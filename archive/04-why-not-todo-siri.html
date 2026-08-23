@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kitto — 04 · Why not a to-do list or Siri</title>
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    /* ---- Slide-local layout. Shared primitives live in theme.css. ------ */
+
+    /* Headline and lede share a row so the comparison table gets the height
+       it needs. */
+    .head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin: 1.5rem 0 2.25rem;
+    }
+
+    /* ---- Comparison table ---------------------------------------------
+       A real <table>: this is tabular data, and screen readers and PDF
+       export both handle it better than a grid of divs. */
+    .cmp {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
+    }
+
+    .cmp col.c-label {
+      width: 26rem;
+    }
+
+    .cmp th,
+    .cmp td {
+      padding: 0.625rem 1rem;
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: 0.0625rem solid var(--border-hair);
+    }
+
+    /* Row labels: left aligned, they read as sentences not headings. */
+    .cmp tbody th {
+      text-align: left;
+      padding-left: 0;
+      font-size: 0.9375rem;
+      line-height: 1.35;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .cmp thead th {
+      padding-top: 0;
+      padding-bottom: 0.875rem;
+      border-bottom: 0.0625rem solid var(--border-strong);
+    }
+
+    .cmp thead th.c-head-label {
+      padding-left: 0;
+      text-align: left;
+    }
+
+    .col-name {
+      font-size: 1.0625rem;
+      line-height: 1.3;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .col-eg {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink-subtle);
+    }
+
+    /* Our column lifts onto a white surface — the only fill in the table. */
+    .own {
+      background: var(--surface);
+    }
+
+    .cmp thead th.own {
+      padding-top: 0.875rem;
+      border-radius: var(--r-lg) var(--r-lg) 0 0;
+      box-shadow: 0 -0.125rem 0.5rem rgb(20 20 40 / 0.03);
+    }
+
+    .cmp tbody tr:last-child td.own {
+      border-bottom: 0;
+      border-radius: 0 0 var(--r-lg) var(--r-lg);
+      box-shadow: 0 0.25rem 0.75rem rgb(20 20 40 / 0.04);
+    }
+
+    /* ---- Answer values. Words, not ticks — a tick reads as a sales chart,
+       and one of these rows is a point against us. ---------------------- */
+    .v-yes {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .v-part {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+    }
+
+    .v-no {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--ink-subtle);
+    }
+
+    /* ---- The honest close ---------------------------------------------- */
+    .trade {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .trade p {
+      max-width: 58rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="slide">
+    <div class="slide__body">
+      <p class="slide__eyebrow t-label rise" style="--d: 0">Why a to-do list or Siri is not enough</p>
+
+      <header class="head">
+        <h1 class="t-display-sm rise" style="--d: 100">
+          What the existing tools do, and where they stop.
+        </h1>
+        <p class="t-body-lg ink-muted rise" style="--d: 180">
+          Both kinds of tool solve one part of the problem. Neither of them opens the document that
+          the date is actually written in.
+        </p>
+      </header>
+
+      <table class="cmp rise" style="--d: 300">
+        <colgroup>
+          <col class="c-label" />
+          <col />
+          <col />
+          <col />
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="c-head-label" scope="col">
+              <span class="t-label ink-subtle">Can it do this?</span>
+            </th>
+            <th scope="col">
+              <span class="col-name">To-do apps</span>
+              <span class="col-eg">Todoist, Apple Reminders</span>
+            </th>
+            <th scope="col">
+              <span class="col-name">Voice assistants</span>
+              <span class="col-eg">Siri, Google Assistant</span>
+            </th>
+            <th class="own" scope="col">
+              <span class="col-name">Kitto</span>
+              <span class="col-eg">This project</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Make a reminder from your voice</th>
+            <td class="v-part">Some</td>
+            <td class="v-yes">Yes</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Read a PDF or a photo of a document</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Turn one sentence into several linked reminders</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Pick the area of life for you</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Show where each extracted value came from</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Work offline, with no running cost</th>
+            <td class="v-yes">Yes</td>
+            <td class="v-no">No</td>
+            <td class="own v-no">No</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="trade rise" style="--d: 460">
+        <span class="pill pill--outline">The trade</span>
+        <p class="t-body-sm ink-muted">
+          The last row is the price we pay. Kitto needs a network connection and around $3 of model
+          calls per active user each month — a measured figure, not an estimate. We accept that cost
+          because rows two to five are where the real work is.
+        </p>
+      </div>
+    </div>
+
+    <!-- Foot rail -->
+    <div class="slide__foot">
+      <div class="slide__wordmark">
+        <img src="assets/ghost.png" alt="" />
+        <span>Kitto</span>
+      </div>
+      <span class="t-micro t-num">04</span>
+    </div>
+  </main>
+</body>
+
+</html>

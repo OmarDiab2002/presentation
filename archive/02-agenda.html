@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kitto — 02 · Agenda</title>
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    /* ---- Slide-local layout. Shared primitives live in theme.css. ------ */
+
+    /* Title column left, list right. The list is vertically centred, so
+       adding entries later grows it outward from the middle instead of
+       leaving a hole at the bottom — this slide is meant to be appended to
+       as each section gets built. */
+    .agenda {
+      display: grid;
+      grid-template-columns: 24rem 1fr;
+      gap: 4rem;
+      height: 100%;
+      align-items: center;
+      padding-top: 2rem;
+    }
+
+    .agenda__intro p {
+      margin-top: 1.25rem;
+    }
+
+    .agenda__list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      align-items: start;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 0.0625rem solid var(--border-hair);
+    }
+
+    .item:first-child {
+      border-top: 0.0625rem solid var(--border-hair);
+    }
+
+    .item__num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 500;
+      color: var(--ink-subtle);
+      font-variant-numeric: tabular-nums;
+      padding-top: 0.125rem;
+    }
+
+    .item__title {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="slide">
+    <div class="slide__body">
+      <div class="agenda">
+        <!-- Left: what this deck covers -->
+        <div class="agenda__intro">
+          <p class="slide__eyebrow t-label rise" style="--d: 0; margin-bottom: 2rem">Agenda</p>
+          <h1 class="t-display rise" style="--d: 100">What we will cover</h1>
+          <p class="t-body-lg ink-muted rise" style="--d: 200">
+            We start with the problem, then show why the tools people already have do not solve it.
+          </p>
+        </div>
+
+        <!-- Right: the sections, in order.
+             To add a section later, copy one .item block and bump the number. -->
+        <div class="agenda__list">
+          <div class="item rise" style="--d: 320">
+            <span class="item__num">01</span>
+            <div>
+              <h2 class="t-serif item__title">The problem</h2>
+              <p class="t-body ink-muted">
+                The official deadlines people have to track by hand, and what it costs when one is
+                missed.
+              </p>
+            </div>
+          </div>
+
+          <div class="item rise" style="--d: 400">
+            <span class="item__num">02</span>
+            <div>
+              <h2 class="t-serif item__title">Why a to-do list or Siri is not enough</h2>
+              <p class="t-body ink-muted">
+                What the existing tools do well, where they stop, and which part of the work is left
+                to the user.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Foot rail -->
+    <div class="slide__foot">
+      <div class="slide__wordmark">
+        <img src="assets/ghost.png" alt="" />
+        <span>Kitto</span>
+      </div>
+      <span class="t-micro t-num">02</span>
+    </div>
+  </main>
+</body>
+
+</html>

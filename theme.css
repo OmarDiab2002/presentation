@@ -1,0 +1,950 @@
+/* ============================================================================
+ * Kitto — Pitch Deck Theme
+ * ----------------------------------------------------------------------------
+ * Ported 1:1 from the live app design system (`app/globals.css` @theme block,
+ * docs/tokens.md, docs/aesthetic.md). The deck IS the product's visual
+ * language — same faces, same palette, same radii, same whisper shadows. A
+ * reviewer watching the pitch should not be able to tell where the slides stop
+ * and the app starts.
+ *
+ * Slides are a fixed 1280x720 design surface expressed in `rem`, with the root
+ * font-size pinned to `min(1.25vw, 2.2222vh)`. 1rem == 16 design px at 1280
+ * wide, so a slide fits ANY viewport at exact 16:9 with no JS, no transform
+ * scaling, and no letterboxing math. Design in px, divide by 16, write rem.
+ * ========================================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Nunito:wght@400..900&display=swap");
+
+:root {
+  /* ---- Surfaces — near-white, faintly lilac ---------------------------- */
+  --canvas: rgb(249 248 252);
+  --canvas-veined: rgb(244 242 249);
+  --surface: rgb(255 255 255);
+  --surface-sunken: rgb(242 241 246);
+  --surface-field: rgb(234 231 225); /* warm taupe */
+  --border-hair: rgb(236 236 236);
+  --border-strong: rgb(220 218 226);
+
+  /* ---- Ink — warm near-black ------------------------------------------ */
+  --ink: rgb(26 24 26);
+  --ink-muted: rgb(138 138 142);
+  --ink-subtle: rgb(184 183 191);
+
+  /* ---- Accent — coral. ACTIVE / progress / selected. Never the CTA. ---- */
+  --accent: rgb(250 106 90);
+  --accent-pressed: rgb(224 84 68);
+  --accent-soft: rgb(255 233 228);
+  --accent-ink: rgb(255 255 255);
+
+  /* ---- Solid — the near-black pill. THE primary emphasis. -------------- */
+  --solid: rgb(28 26 23);
+  --solid-ink: rgb(255 255 255);
+
+  /* The surround behind the slides, and the phone's bezel. Both stay dark in
+   * both themes: a bezel that inverts with `--solid` turns the handset white. */
+  --surround: rgb(232 230 238);
+  --bezel: rgb(196, 195, 195);
+
+  /* The canvas veining — two barely-there washes so a slide is never flat. */
+  --veil-a: rgb(250 106 90 / 0.055);
+  --veil-b: rgb(201 190 243 / 0.16);
+
+  /* ---- Gold — sparing, premium only ------------------------------------ */
+  --gold: rgb(176 137 47);
+  --gold-soft: rgb(239 230 210);
+
+  /* ---- Status ---------------------------------------------------------- */
+  --success: rgb(52 199 89);
+  --success-soft: rgb(223 244 230);
+  --danger: rgb(229 72 77);
+  --danger-soft: rgb(250 228 229);
+  --warning: rgb(217 138 43);
+  --warning-soft: rgb(251 238 221);
+
+  /* ---- Category pastels — the emoji-chip backgrounds --------------------
+   * Theme-invariant in the app: a coloured circle carrying a full-colour 3D
+   * emoji is the one place where colour means "which part of your life". */
+  --cat-lilac: rgb(201 190 243);
+  --cat-lilac-ink: rgb(92 56 140);
+  --cat-periwinkle: rgb(199 210 245);
+  --cat-periwinkle-ink: rgb(62 68 120);
+  --cat-sky: rgb(203 217 240);
+  --cat-sky-ink: rgb(42 74 122);
+  --cat-sage: rgb(183 199 180);
+  --cat-sage-ink: rgb(42 92 66);
+  --cat-yellow: rgb(251 231 160);
+  --cat-yellow-ink: rgb(120 96 40);
+  --cat-peach: rgb(245 223 200);
+  --cat-peach-ink: rgb(120 82 48);
+  --cat-blush: rgb(251 227 230);
+  --cat-blush-ink: rgb(122 48 76);
+  --cat-pink: rgb(244 198 214);
+  --cat-pink-ink: rgb(122 48 76);
+
+  /* ---- The six life-admin domains, on the pastel set -------------------- */
+  --domain-health: var(--cat-sage);
+  --domain-health-ink: var(--cat-sage-ink);
+  --domain-home: var(--cat-peach);
+  --domain-home-ink: var(--cat-peach-ink);
+  --domain-car: var(--cat-periwinkle);
+  --domain-car-ink: var(--cat-periwinkle-ink);
+  --domain-finance: var(--cat-sky);
+  --domain-finance-ink: var(--cat-sky-ink);
+  --domain-family: var(--cat-blush);
+  --domain-family-ink: var(--cat-blush-ink);
+  --domain-pets: var(--cat-lilac);
+  --domain-pets-ink: var(--cat-lilac-ink);
+
+  /* ---- Type families ---------------------------------------------------
+   * Fraunces — display: high-contrast editorial serif, the emotional register.
+   * Nunito   — body/data: rounded, friendly, tall x-height, the functional one.
+   * Hierarchy comes from family + scale contrast, never from colour. */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Nunito", -apple-system, system-ui, ui-rounded, sans-serif;
+
+  /* ---- Radius — nothing sharp: a pill or a large round ------------------ */
+  --r-sm: 0.5rem;
+  --r-md: 0.75rem;
+  --r-lg: 1rem;
+  --r-xl: 1.25rem;
+  --r-2xl: 1.5rem;
+  --r-3xl: 1.875rem;
+  --r-pill: 9999px;
+
+  /* ---- Shadows — whisper-soft and diffuse, never a hard edge ------------ */
+  --shadow-card: 0 0.125rem 0.5rem rgb(20 20 40 / 0.04), 0 0.0625rem 0.1875rem rgb(20 20 40 / 0.03);
+  --shadow-elevated: 0 0.5rem 1.75rem rgb(20 20 40 / 0.08), 0 0.125rem 0.375rem rgb(20 20 40 / 0.05);
+  --shadow-halo: 0 0.375rem 1.25rem rgb(0 0 0 / 0.08);
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-slow: 900ms;
+  --dur-base: 420ms;
+}
+
+/* ============================================================================
+ * Dark — the same tokens, the app's `.dark` block
+ * ----------------------------------------------------------------------------
+ * Ported from `app/globals.css`. Dark is near-true-black, NOT a dimmed light
+ * theme, and depth comes from surface-lightness stepping rather than shadow —
+ * so the shadows here are close to inert and the surfaces do the work.
+ *
+ * Two things deliberately do NOT change:
+ *   - the coral accent, which means the same thing in both themes;
+ *   - the category pastels, because a coloured circle carrying an emoji is the
+ *     one place hue means "which part of your life", and dimming it would
+ *     throw that away.
+ *
+ * Set by [data-theme] on <html>, with the system preference as the default.
+ * ========================================================================= */
+
+:root[data-theme="dark"] {
+  --canvas: rgb(3 3 3);
+  --canvas-veined: rgb(12 12 14);
+  --surface: rgb(20 20 22);
+  --surface-sunken: rgb(24 24 26);
+  --surface-field: rgb(34 34 36);
+  --border-hair: rgb(34 34 38);
+  --border-strong: rgb(52 52 56);
+
+  --ink: rgb(245 245 247);
+  --ink-muted: rgb(154 154 160);
+  --ink-subtle: rgb(120 120 126);
+
+  --accent-pressed: rgb(240 118 104);
+  --accent-soft: rgb(71 42 38);
+
+  --solid: rgb(245 245 247);
+  --solid-ink: rgb(20 20 22);
+
+  --gold: rgb(214 176 88);
+  --gold-soft: rgb(58 48 24);
+
+  --success: rgb(64 208 112);
+  --success-soft: rgb(24 46 32);
+  --danger: rgb(240 96 100);
+  --danger-soft: rgb(58 24 26);
+  --warning: rgb(224 158 74);
+  --warning-soft: rgb(58 46 22);
+
+  --surround: rgb(14 14 16);
+  --bezel: rgb(38 38 42);
+  --veil-a: rgb(250 106 90 / 0.07);
+  --veil-b: rgb(201 190 243 / 0.06);
+
+  --shadow-card: 0 0.125rem 0.5rem rgb(0 0 0 / 0.5);
+  --shadow-elevated: 0 0.5rem 1.75rem rgb(0 0 0 / 0.6), 0 0.125rem 0.375rem rgb(0 0 0 / 0.4);
+  --shadow-halo: 0 0.375rem 1.25rem rgb(0 0 0 / 0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --canvas: rgb(3 3 3);
+    --canvas-veined: rgb(12 12 14);
+    --surface: rgb(20 20 22);
+    --surface-sunken: rgb(24 24 26);
+    --surface-field: rgb(34 34 36);
+    --border-hair: rgb(34 34 38);
+    --border-strong: rgb(52 52 56);
+
+    --ink: rgb(245 245 247);
+    --ink-muted: rgb(154 154 160);
+    --ink-subtle: rgb(120 120 126);
+
+    --accent-pressed: rgb(240 118 104);
+    --accent-soft: rgb(71 42 38);
+
+    --solid: rgb(245 245 247);
+    --solid-ink: rgb(20 20 22);
+
+    --gold: rgb(214 176 88);
+    --gold-soft: rgb(58 48 24);
+
+    --success: rgb(64 208 112);
+    --success-soft: rgb(24 46 32);
+    --danger: rgb(240 96 100);
+    --danger-soft: rgb(58 24 26);
+    --warning: rgb(224 158 74);
+    --warning-soft: rgb(58 46 22);
+
+    --surround: rgb(14 14 16);
+    --bezel: rgb(38 38 42);
+    --veil-a: rgb(250 106 90 / 0.07);
+    --veil-b: rgb(201 190 243 / 0.06);
+
+    --shadow-card: 0 0.125rem 0.5rem rgb(0 0 0 / 0.5);
+    --shadow-elevated: 0 0.5rem 1.75rem rgb(0 0 0 / 0.6), 0 0.125rem 0.375rem rgb(0 0 0 / 0.4);
+    --shadow-halo: 0 0.375rem 1.25rem rgb(0 0 0 / 0.55);
+  }
+}
+
+/* ============================================================================
+ * Stage — the 16:9 fit
+ * ========================================================================= */
+
+/* 1rem == 16 design px at a 1280x720 surface. Every slide dimension below is
+ * (design px / 16)rem, so the whole deck scales as one unit. */
+html {
+  font-size: min(1.25vw, 2.2222vh);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  transition: background 240ms var(--ease-out-expo);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--surround);
+  font-family: var(--font-sans);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.slide {
+  position: relative;
+  width: 80rem; /* 1280 */
+  height: 45rem; /* 720 */
+  overflow: hidden;
+  background: var(--canvas);
+  /* The "veining": two barely-there washes so the canvas is never flat white.
+   * Same intent as --color-canvas-veined in the app. */
+  background-image:
+    radial-gradient(120% 90% at 88% 6%, var(--veil-a) 0%, transparent 55%),
+    radial-gradient(100% 80% at 4% 96%, var(--veil-b) 0%, transparent 58%);
+}
+
+/* ============================================================================
+ * Type scale — ported from the app's @theme
+ * ========================================================================= */
+
+.t-hero {
+  font-family: var(--font-display);
+  font-size: 6.5rem; /* 104 */
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 144;
+}
+
+.t-display {
+  font-family: var(--font-display);
+  font-size: 3.5rem; /* 56 */
+  line-height: 1.08;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 96;
+}
+
+.t-display-sm {
+  font-family: var(--font-display);
+  font-size: 2.375rem; /* 38 */
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 60;
+}
+
+.t-serif {
+  font-family: var(--font-display);
+  font-size: 1.625rem; /* 26 */
+  line-height: 1.25;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 20, "opsz" 36;
+}
+
+.t-heading {
+  font-size: 1.25rem; /* 20 */
+  line-height: 1.4;
+  font-weight: 800;
+  letter-spacing: -0.005em;
+}
+
+.t-heading-sm {
+  font-size: 1.0625rem; /* 17 */
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.t-body {
+  font-size: 1rem; /* 16 */
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.t-body-lg {
+  font-size: 1.375rem; /* 22 */
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.t-body-sm {
+  font-size: 0.875rem; /* 14 */
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* The eyebrow. Every slide gets exactly one. */
+.t-label {
+  font-size: 0.8125rem; /* 13 */
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.t-micro {
+  font-size: 0.6875rem; /* 11 */
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Tabular numerals for anything that reads as data. */
+.t-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ---- Ink tones ---------------------------------------------------------- */
+.ink {
+  color: var(--ink);
+}
+.ink-muted {
+  color: var(--ink-muted);
+}
+.ink-subtle {
+  color: var(--ink-subtle);
+}
+.ink-accent {
+  color: var(--accent);
+}
+
+/* ============================================================================
+ * Primitives
+ * ========================================================================= */
+
+/* ---- Card — white on lilac canvas, whisper shadow, big round ------------- */
+.card {
+  background: var(--surface);
+  border-radius: var(--r-2xl);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+
+.card--lg {
+  border-radius: var(--r-3xl);
+  padding: 2rem;
+}
+
+.card--sunken {
+  background: var(--surface-sunken);
+  box-shadow: none;
+}
+
+.card--elevated {
+  box-shadow: var(--shadow-elevated);
+}
+
+/* ---- Chip — the signature emoji-in-a-pastel-circle ----------------------- */
+.chip {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--r-pill);
+  background: var(--surface-sunken);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.chip--sm {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 1.125rem;
+}
+
+.chip--lg {
+  width: 4.25rem;
+  height: 4.25rem;
+  font-size: 2.125rem;
+}
+
+/* Domain tints for .chip */
+.chip--health {
+  background: var(--domain-health);
+}
+.chip--home {
+  background: var(--domain-home);
+}
+.chip--car {
+  background: var(--domain-car);
+}
+.chip--finance {
+  background: var(--domain-finance);
+}
+.chip--family {
+  background: var(--domain-family);
+}
+.chip--pets {
+  background: var(--domain-pets);
+}
+.chip--accent {
+  background: var(--accent-soft);
+}
+
+/* ---- Pill — labels, tags, status ---------------------------------------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--r-pill);
+  background: var(--surface-sunken);
+  color: var(--ink-muted);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* The near-black pill: the deck's primary emphasis, used once per slide. */
+.pill--solid {
+  background: var(--solid);
+  color: var(--solid-ink);
+}
+
+.pill--accent {
+  background: var(--accent-soft);
+  color: var(--accent-pressed);
+}
+
+.pill--outline {
+  background: transparent;
+  border: 0.0625rem solid var(--border-strong);
+  color: var(--ink-muted);
+}
+
+.pill--success {
+  background: var(--success-soft);
+  color: rgb(28 122 62);
+}
+.pill--warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+.pill--danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.pill--gold {
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+
+/* ---- Citation chip — the trust primitive, verbatim from the app ---------- */
+.cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--r-pill);
+  background: var(--surface-field);
+  color: rgb(108 96 84);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ---- Hairline ----------------------------------------------------------- */
+.rule {
+  height: 0.0625rem;
+  background: var(--border-hair);
+  border: 0;
+}
+
+.rule--short {
+  width: 3.5rem;
+  height: 0.1875rem;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+}
+
+/* ---- Numbered step ------------------------------------------------------ */
+.step-num {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--r-pill);
+  background: var(--solid);
+  color: var(--solid-ink);
+  font-size: 0.875rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================================
+ * Slide furniture — shared chrome every slide inherits
+ * ========================================================================= */
+
+/* The content well. Generous, monumental margins — space is the design. */
+.slide__body {
+  position: absolute;
+  inset: 4rem 5rem 4.5rem;
+}
+
+/* Top-left eyebrow: section label + coral tick */
+.slide__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--ink-subtle);
+}
+
+.slide__eyebrow::before {
+  content: "";
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+}
+
+/* Bottom rail: wordmark left, slide number right */
+.slide__foot {
+  position: absolute;
+  left: 5rem;
+  right: 5rem;
+  bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-subtle);
+}
+
+.slide__wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink-subtle);
+}
+
+.slide__wordmark img {
+  width: 1.125rem;
+  height: 1.125rem;
+  object-fit: contain;
+}
+
+/* ============================================================================
+ * Layout helpers
+ * ========================================================================= */
+
+.row {
+  display: flex;
+  align-items: center;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.grid {
+  display: grid;
+}
+.g-2 {
+  gap: 0.5rem;
+}
+.g-3 {
+  gap: 0.75rem;
+}
+.g-4 {
+  gap: 1rem;
+}
+.g-5 {
+  gap: 1.25rem;
+}
+.g-6 {
+  gap: 1.5rem;
+}
+.g-8 {
+  gap: 2rem;
+}
+.g-10 {
+  gap: 2.5rem;
+}
+
+/* ============================================================================
+ * Motion — clarifies flow, never entertains. The institution never celebrates.
+ * Each element declares --d (delay in ms) and rises once on slide load.
+ * ========================================================================= */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.875rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  opacity: 0;
+  animation: rise var(--dur-slow) var(--ease-out-expo) forwards;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+.settle {
+  opacity: 0;
+  animation: settle var(--dur-slow) var(--ease-out-expo) forwards;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .settle {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================================
+ * Print — one slide per page, exact 16:9, for PDF export
+ * ========================================================================= */
+
+@page {
+  size: 1280px 720px;
+  margin: 0;
+}
+
+@media print {
+  html {
+    font-size: 16px;
+  }
+  body {
+    display: block;
+    background: none;
+  }
+  .slide {
+    box-shadow: none;
+    page-break-after: always;
+  }
+  .rise,
+  .settle {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================================
+ * Shared slide patterns
+ * ----------------------------------------------------------------------------
+ * Added when the deck grew from four slides to the full pitch. Anything used by
+ * more than one slide lives here; genuinely per-slide layout lives in deck.css.
+ * ========================================================================= */
+
+/* ---- Head — the title + lede pair under the eyebrow --------------------- */
+.head {
+  margin-bottom: 2.25rem;
+}
+
+.head__title {
+  max-width: 52rem;
+  margin-top: 1.75rem;
+}
+
+.head__lede {
+  max-width: 48rem;
+  margin-top: 1rem;
+}
+
+/* ---- Feature layout — argument on the left, product footage on the right --
+ * Every feature slide uses this. The media column is a fixed width so the
+ * phone placeholder is identical on every slide and the eye never has to
+ * re-find it between slides. */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 18rem;
+  gap: 3.5rem;
+  height: 100%;
+  align-items: center;
+}
+
+/* For slides whose left side is a table and needs the room. */
+.feature--tight {
+  grid-template-columns: 1fr 17rem;
+  gap: 2.75rem;
+}
+
+/* Landscape footage (the web app, not the phone). */
+.feature--wide {
+  grid-template-columns: 1fr 26rem;
+}
+
+.feature__body {
+  min-width: 0;
+}
+
+.feature__media {
+  display: grid;
+  place-items: center;
+}
+
+/* ---- Video placeholder --------------------------------------------------
+ * Drop the real recording in by uncommenting the <video> inside and deleting
+ * the .vid__wait block beside it. Keep the wrapper: it owns the shape and the
+ * crop.
+ *
+ * Render BOTH palettes — `<name>.mp4` and `<name>-dark.mp4`. The deck follows
+ * the viewer's theme and swaps the file, so a scene with only a light render
+ * shows a glowing white phone inside a black slide. `video/render-all.mjs`
+ * does both in one pass. */
+.vid {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--surface-sunken);
+  border-radius: var(--r-3xl);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* The phone. 9:19.5 is the modern handset ratio the app is designed against. */
+.vid--phone {
+  width: 16.15rem;
+  height: 35rem;
+  border-radius: 2.25rem;
+  padding: 0.275rem;
+  background: var(--bezel);
+}
+
+.vid--phone .vid__screen {
+  border-radius: 1.9375rem;
+}
+
+/* Landscape, for the browser build. */
+.vid--wide {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+.vid__screen {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--canvas);
+  border-radius: var(--r-2xl);
+}
+
+.vid__screen > video,
+.vid__screen > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* What shows until the footage exists. */
+.vid__wait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.vid__glyph {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--r-pill);
+  background: var(--accent-soft);
+  color: var(--accent-pressed);
+  font-size: 1.125rem;
+  padding-left: 0.1875rem;
+}
+
+.vid__file {
+  padding: 0.3125rem 0.625rem;
+  border-radius: var(--r-pill);
+  background: var(--surface-field);
+  color: rgb(108 96 84);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* ---- Bullets — a coral tick and a line of argument ---------------------- */
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.bullet {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.875rem;
+  align-items: start;
+}
+
+.bullet__mark {
+  flex: none;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  margin-top: 0.5rem;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+}
+
+.bullet__title {
+  display: block;
+  margin-bottom: 0.1875rem;
+}
+
+/* ---- Columns ------------------------------------------------------------ */
+.cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.cols-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+/* ---- A titled block with a hairline above it ---------------------------- */
+.block {
+  padding-top: 1.125rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+.block--accent {
+  border-top: 0.1875rem solid var(--accent);
+  padding-top: calc(1.125rem - 0.125rem);
+}
+
+.block__label {
+  margin-bottom: 0.75rem;
+}
+
+/* ---- Pull quote — one per slide at most --------------------------------- */
+.quote {
+  font-family: var(--font-display);
+  font-size: 2.375rem;
+  line-height: 1.18;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 60;
+}
+
+/* ---- A row that reads like an app list row ------------------------------ */
+.row-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1.125rem;
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Big number ---------------------------------------------------------- */
+.stat__num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: "SOFT" 20, "opsz" 72;
+}
+
+/* ---- Distributing a short slide ------------------------------------------
+ * A slide whose content is a head plus one block sits high, leaving a hole
+ * above the footer. `col-body` turns the body into a column; the block marked
+ * `grow` takes the leftover height and centres inside it, so any trailing note
+ * still lands at the bottom edge where it belongs. */
+.col-body .slide__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.col-body .slide__body > .grow {
+  flex: 1;
+  display: grid;
+  align-content: center;
+}

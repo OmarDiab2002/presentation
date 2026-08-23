@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kitto — 01 · Title</title>
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    /* ---- Slide-local layout. Shared primitives live in theme.css. ------ */
+
+    /* No `height: 100%` here — this element IS .slide__body, whose height
+         already comes from its top/bottom inset. A percentage height would be
+         resolved against .slide (45rem) and blow straight through the footer. */
+    .title-body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* The hero band: wordmark left, mascot right. Deliberately asymmetric —
+         the mascot sits off the optical centre so the name carries the slide. */
+    .hero {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 3rem;
+      padding-top: 1.25rem;
+    }
+
+    .hero__name {
+      display: flex;
+      align-items: baseline;
+      gap: 1.25rem;
+    }
+
+    /* The trailing dot: the one piece of coral in the wordmark. */
+    .hero__dot {
+      width: 0.875rem;
+      height: 0.875rem;
+      border-radius: var(--r-pill);
+      background: var(--accent);
+      transform: translateY(-0.25rem);
+    }
+
+    .hero__creed {
+      margin-top: 1.125rem;
+      color: var(--ink-muted);
+    }
+
+    .hero__creed em {
+      font-style: normal;
+      color: var(--ink);
+    }
+
+    .hero__domains {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    /* Mascot: a soft halo behind it rather than a shadow — the app's own
+         treatment. The gentle float is the only motion on the slide. */
+    .mascot {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 21rem;
+      height: 21rem;
+    }
+
+    .mascot::before {
+      content: "";
+      position: absolute;
+      inset: 2rem;
+      border-radius: var(--r-pill);
+      background: radial-gradient(circle, rgb(250 106 90 / 0.14) 0%, transparent 68%);
+    }
+
+    .mascot img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: float 7s var(--ease-out-expo) 1.1s infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-0.75rem);
+      }
+    }
+
+    /* ---- The one-sentence explainer, on its own full-width line -------- */
+    .oneliner {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.25rem 0 1.5rem;
+      border-top: 0.0625rem solid var(--border-hair);
+      border-bottom: 0.0625rem solid var(--border-hair);
+    }
+
+    .oneliner p {
+      font-size: 1.25rem;
+      line-height: 1.4;
+      font-weight: 500;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .oneliner strong {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    /* ---- Team roster ----------------------------------------------------
+       No avatars: six names on a hairline-divided rule, read as a masthead
+       rather than a contact list. The vertical rules carry the rhythm the
+       pastel circles used to. */
+    .team-block {
+      padding-top: 1.5rem;
+      border-top: 0.0625rem solid var(--border-hair);
+    }
+
+    .team__label {
+      margin-bottom: 1.125rem;
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.25rem;
+    }
+
+    .member {
+      padding-left: 0.875rem;
+      border-left: 0.0625rem solid var(--border-strong);
+      font-size: 0.9375rem;
+      line-height: 1.3;
+      font-weight: 800;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+    }
+
+    .member span {
+      display: block;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="slide">
+    <div class="slide__body title-body">
+      <!-- Eyebrow -->
+      <p class="slide__eyebrow t-label rise" style="--d: 0">ITI · Graduation Project 2026</p>
+
+      <!-- Hero -->
+      <div class="hero">
+        <div>
+          <div class="hero__name rise" style="--d: 120">
+            <h1 class="t-hero">Kitto</h1>
+            <span class="hero__dot"></span>
+          </div>
+
+          <div class="rule--short rise" style="--d: 220; margin-top: 1.5rem"></div>
+
+          <p class="t-display-sm hero__creed rise" style="--d: 300">
+            <em>Speak once.</em> Order follows.
+          </p>
+
+        </div>
+
+        <div class="mascot settle" style="--d: 260">
+          <img src="assets/ghost.png" alt="Kitto, the companion that keeps your life admin in order" />
+        </div>
+      </div>
+
+
+      <!-- Team -->
+      <div class="team-block rise" style="--d: 620">
+        <p class="t-label ink-subtle team__label">Team</p>
+        <div class="team">
+          <p class="member">Mina Melad<span>Massoud</span></p>
+          <p class="member">Mahmoud Ahmed<span>Sayed Shoura</span></p>
+          <p class="member">Fady Adel<span>Botros Awdallah</span></p>
+          <p class="member">Omar Abdullah<span>Diab</span></p>
+          <p class="member">Omar Khaled<span>Abdelaziz</span></p>
+          <p class="member">Mario Magdy<span>Saber Kaldas</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Foot rail -->
+    <div class="slide__foot">
+      <div class="slide__wordmark">
+        <img src="assets/ghost.png" alt="" />
+        <span>Kitto</span>
+      </div>
+      <span class="t-micro t-num">01</span>
+    </div>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kitto — Deck Theme</title>
+    <link rel="stylesheet" href="theme.css" />
+    <style>
+      /* This sheet is a scrolling reference, not a 16:9 slide — so the root
+         size is pinned and the page is allowed to grow past 720. Every slide
+         file keeps the fluid `min(1.25vw, 2.2222vh)` from theme.css. */
+      html {
+        font-size: 15px;
+      }
+      body {
+        display: block;
+        background: var(--canvas);
+        background-image:
+          radial-gradient(70% 45% at 90% 0%, rgb(250 106 90 / 0.05) 0%, transparent 60%),
+          radial-gradient(60% 40% at 0% 100%, rgb(201 190 243 / 0.14) 0%, transparent 60%);
+        background-attachment: fixed;
+      }
+
+      .sheet {
+        max-width: 68rem;
+        margin: 0 auto;
+        padding: 4.5rem 3rem 6rem;
+      }
+
+      .sheet__head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border-hair);
+      }
+
+      section {
+        padding: 3.25rem 0 0;
+      }
+
+      .sec-head {
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .sec-head .n {
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        color: var(--ink-subtle);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* --- swatches --- */
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.875rem;
+      }
+      .sw {
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+      }
+      .sw__fill {
+        height: 4.25rem;
+        border-bottom: 1px solid rgb(0 0 0 / 0.05);
+      }
+      .sw__meta {
+        padding: 0.625rem 0.75rem 0.75rem;
+      }
+      .sw__name {
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: -0.005em;
+      }
+      .sw__val {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        color: var(--ink-subtle);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* --- type specimens --- */
+      .spec {
+        display: grid;
+        grid-template-columns: 7.5rem 1fr;
+        gap: 1.5rem;
+        align-items: baseline;
+        padding: 1.125rem 0;
+        border-bottom: 1px solid var(--border-hair);
+      }
+      .spec:last-child {
+        border-bottom: 0;
+      }
+      .spec__key {
+        font-size: 0.6875rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-subtle);
+        padding-top: 0.375rem;
+      }
+      .spec__note {
+        display: block;
+        margin-top: 0.375rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--ink-subtle);
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      .demo-label {
+        font-size: 0.6875rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-subtle);
+        margin-bottom: 0.75rem;
+      }
+
+      .matter-row {
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+      }
+      .matter-row + .matter-row {
+        margin-top: 0.875rem;
+        padding-top: 0.875rem;
+        border-top: 1px solid var(--border-hair);
+      }
+
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .shadow-demo {
+        height: 5rem;
+        border-radius: var(--r-2xl);
+        background: var(--surface);
+        display: grid;
+        place-items: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--ink-subtle);
+      }
+
+      .radius-demo {
+        height: 4.5rem;
+        background: var(--surface-field);
+        display: grid;
+        place-items: end center;
+        padding-bottom: 0.5rem;
+        font-size: 0.6875rem;
+        font-weight: 800;
+        color: rgb(120 105 90);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="sheet__head">
+        <div>
+          <p class="t-label ink-subtle" style="margin-bottom: 0.875rem">Pitch deck · design system</p>
+          <h1 class="t-display" style="margin-bottom: 0.75rem">The theme</h1>
+          <p class="t-body-lg ink-muted" style="max-width: 34rem">
+            Ported straight from the shipped app. Same faces, same palette, same radii — the deck and
+            the product are one visual system.
+          </p>
+        </div>
+        <img
+          src="assets/ghost.png"
+          alt="Kitto, the mascot"
+          style="width: 7rem; height: 7rem; object-fit: contain"
+        />
+      </header>
+
+      <!-- ================= 01 · PALETTE ================= -->
+      <section>
+        <div class="sec-head">
+          <span class="n">01</span>
+          <h2 class="t-serif">Palette</h2>
+          <span class="t-body-sm ink-subtle">Colour is semantic, never decorative</span>
+        </div>
+
+        <p class="demo-label">Surfaces &amp; ink</p>
+        <div class="swatches" style="margin-bottom: 2rem">
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--canvas)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">canvas</div>
+              <div class="sw__val">249 248 252</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--surface)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">surface</div>
+              <div class="sw__val">255 255 255</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--surface-sunken)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">sunken</div>
+              <div class="sw__val">242 241 246</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--surface-field)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">field</div>
+              <div class="sw__val">234 231 225</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--ink)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">ink</div>
+              <div class="sw__val">26 24 26</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--ink-muted)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">ink-muted</div>
+              <div class="sw__val">138 138 142</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="demo-label">The two accents — deliberately distinct</p>
+        <div class="swatches" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 2rem">
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--accent)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">accent · coral</div>
+              <div class="sw__val">active / selected / progress</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--accent-soft)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">accent-soft</div>
+              <div class="sw__val">255 233 228</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--solid)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">solid · near-black</div>
+              <div class="sw__val">the primary emphasis</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--gold)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">gold</div>
+              <div class="sw__val">premium only, sparing</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="demo-label">The six life-admin domains</p>
+        <div class="swatches">
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--domain-health)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">Health</div>
+              <div class="sw__val">sage</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--domain-home)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">Home</div>
+              <div class="sw__val">peach</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--domain-car)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">Car</div>
+              <div class="sw__val">periwinkle</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--domain-finance)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">Finance</div>
+              <div class="sw__val">sky</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--domain-family)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">Family</div>
+              <div class="sw__val">blush</div>
+            </div>
+          </div>
+          <div class="sw">
+            <div class="sw__fill" style="background: var(--domain-pets)"></div>
+            <div class="sw__meta">
+              <div class="sw__name">Pets</div>
+              <div class="sw__val">lilac</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 02 · TYPE ================= -->
+      <section>
+        <div class="sec-head">
+          <span class="n">02</span>
+          <h2 class="t-serif">Type</h2>
+          <span class="t-body-sm ink-subtle">Hierarchy from family + scale, never from colour</span>
+        </div>
+
+        <div class="spec">
+          <div class="spec__key">
+            Hero
+            <span class="spec__note">Fraunces 500 · 104/106</span>
+          </div>
+          <div class="t-hero">Kitto</div>
+        </div>
+        <div class="spec">
+          <div class="spec__key">
+            Display
+            <span class="spec__note">Fraunces 500 · 56/60</span>
+          </div>
+          <div class="t-display">Speak once. Order follows.</div>
+        </div>
+        <div class="spec">
+          <div class="spec__key">
+            Display sm
+            <span class="spec__note">Fraunces 500 · 38/44</span>
+          </div>
+          <div class="t-display-sm">The deadline nobody remembers</div>
+        </div>
+        <div class="spec">
+          <div class="spec__key">
+            Serif
+            <span class="spec__note">Fraunces 500 · 26/32</span>
+          </div>
+          <div class="t-serif">Today's briefing</div>
+        </div>
+        <div class="spec">
+          <div class="spec__key">
+            Heading
+            <span class="spec__note">Nunito 800 · 20/28</span>
+          </div>
+          <div class="t-heading">Renew car insurance</div>
+        </div>
+        <div class="spec">
+          <div class="spec__key">
+            Body lg
+            <span class="spec__note">Nunito 500 · 22/33</span>
+          </div>
+          <div class="t-body-lg ink-muted">
+            One spoken sentence becomes the matters, the dates, and the reminders.
+          </div>
+        </div>
+        <div class="spec">
+          <div class="spec__key">
+            Body
+            <span class="spec__note">Nunito 500 · 16/24</span>
+          </div>
+          <div class="t-body ink-muted">
+            The product noun is <strong>matters</strong>, not tasks. The emotional goal is relief,
+            not productivity.
+          </div>
+        </div>
+        <div class="spec">
+          <div class="spec__key">
+            Label
+            <span class="spec__note">Nunito 800 · 13 · 0.14em</span>
+          </div>
+          <div class="t-label ink-subtle">Problem statement</div>
+        </div>
+        <div class="spec">
+          <div class="spec__key">
+            Numerals
+            <span class="spec__note">Tabular, always, for data</span>
+          </div>
+          <div class="t-heading t-num">£142.37 · 30 Jul · p.2</div>
+        </div>
+      </section>
+
+      <!-- ================= 03 · PRIMITIVES ================= -->
+      <section>
+        <div class="sec-head">
+          <span class="n">03</span>
+          <h2 class="t-serif">Primitives</h2>
+          <span class="t-body-sm ink-subtle">The pieces every slide is built from</span>
+        </div>
+
+        <div class="demo-grid" style="margin-bottom: 1.25rem">
+          <div>
+            <p class="demo-label">Emoji chip — the signature</p>
+            <div class="card" style="display: flex; gap: 0.75rem; align-items: center">
+              <span class="chip chip--car">🚗</span>
+              <span class="chip chip--health">🩺</span>
+              <span class="chip chip--finance">💳</span>
+              <span class="chip chip--pets">🐾</span>
+            </div>
+          </div>
+          <div>
+            <p class="demo-label">Pills</p>
+            <div class="card">
+              <div class="stack">
+                <span class="pill pill--solid">Primary</span>
+                <span class="pill pill--accent">Active</span>
+                <span class="pill">Neutral</span>
+                <span class="pill pill--danger">Overdue</span>
+                <span class="pill pill--success">Done</span>
+                <span class="pill pill--outline">Phase 2</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="demo-label">Citation — the trust primitive</p>
+            <div class="card">
+              <p class="t-body-sm ink-muted" style="margin-bottom: 0.75rem">
+                Every AI-derived value carries its source.
+              </p>
+              <div class="stack">
+                <span class="cite">📄 policy.pdf · p.2</span>
+                <span class="cite">🎙 voice note · 0:04</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-grid">
+          <div>
+            <p class="demo-label">Matter row — the core object</p>
+            <div class="card">
+              <div class="matter-row">
+                <span class="chip chip--car">🚗</span>
+                <div style="flex: 1">
+                  <div class="t-heading-sm">Renew car insurance</div>
+                  <div class="t-body-sm ink-subtle t-num">Due 30 Jul · £142.37</div>
+                </div>
+                <span class="pill pill--danger">Overdue</span>
+              </div>
+              <div class="matter-row">
+                <span class="chip chip--family">🎒</span>
+                <div style="flex: 1">
+                  <div class="t-heading-sm">School fees</div>
+                  <div class="t-body-sm ink-subtle t-num">Due 2 Aug</div>
+                </div>
+                <span class="pill pill--accent">Today</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="demo-label">Numbered step</p>
+            <div class="card">
+              <div style="display: flex; gap: 0.875rem; align-items: flex-start">
+                <span class="step-num">1</span>
+                <div>
+                  <div class="t-heading-sm">User speaks</div>
+                  <div class="t-body-sm ink-muted">"Car insurance is due end of July, £142."</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.875rem; align-items: flex-start; margin-top: 1rem">
+                <span class="step-num">2</span>
+                <div>
+                  <div class="t-heading-sm">Agent files it</div>
+                  <div class="t-body-sm ink-muted">Domain, date and amount extracted.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="demo-label">Elevation &amp; radius</p>
+            <div class="col g-3">
+              <div class="shadow-demo" style="box-shadow: var(--shadow-card)">shadow-card</div>
+              <div class="shadow-demo" style="box-shadow: var(--shadow-elevated)">
+                shadow-elevated
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem">
+                <div class="radius-demo" style="border-radius: var(--r-lg)">16</div>
+                <div class="radius-demo" style="border-radius: var(--r-2xl)">24</div>
+                <div class="radius-demo" style="border-radius: var(--r-pill)">pill</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 04 · RULES ================= -->
+      <section>
+        <div class="sec-head">
+          <span class="n">04</span>
+          <h2 class="t-serif">Rules the deck holds itself to</h2>
+        </div>
+        <div class="demo-grid">
+          <div class="card card--lg">
+            <span class="chip chip--accent" style="margin-bottom: 1rem">🎯</span>
+            <h3 class="t-heading" style="margin-bottom: 0.5rem">One accent per slide</h3>
+            <p class="t-body-sm ink-muted">
+              Coral marks the one thing that matters on the slide. The near-black pill is the single
+              primary emphasis. Paint everything and nothing reads.
+            </p>
+          </div>
+          <div class="card card--lg">
+            <span class="chip chip--health" style="margin-bottom: 1rem">🌿</span>
+            <h3 class="t-heading" style="margin-bottom: 0.5rem">Space over decoration</h3>
+            <p class="t-body-sm ink-muted">
+              No card-in-a-card, no borders where whitespace works, no gradient blobs. Generous
+              margins are the design — 80px sides, 64px top.
+            </p>
+          </div>
+          <div class="card card--lg">
+            <span class="chip chip--finance" style="margin-bottom: 1rem">🧾</span>
+            <h3 class="t-heading" style="margin-bottom: 0.5rem">Provenance is non-negotiable</h3>
+            <p class="t-body-sm ink-muted">
+              Any AI-derived value shown on a slide renders with its citation chip — exactly as the
+              app does. It's the product's #1 risk mitigation, so it's on screen.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer style="margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border-hair)">
+        <div style="display: flex; justify-content: space-between; align-items: center">
+          <div class="slide__wordmark">
+            <img src="assets/ghost.png" alt="" />
+            <span>Kitto</span>
+          </div>
+          <span class="t-micro ink-subtle">Tokens sourced from app/globals.css · docs/tokens.md</span>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

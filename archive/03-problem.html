@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kitto — 03 · The problem</title>
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    /* ---- Slide-local layout. Shared primitives live in theme.css. ------ */
+
+    .head {
+      margin-bottom: 2.25rem;
+    }
+
+    /* Capped so the headline breaks into two controlled lines rather than
+       running the full 70rem measure. */
+    .head__title {
+      max-width: 52rem;
+      margin-top: 2rem;
+    }
+
+    .head__lede {
+      max-width: 46rem;
+      margin-top: 1.25rem;
+    }
+
+    /* The three questions the pitch structure asks of a problem statement:
+       what, who, why. Equal width, but the third carries the stakes, so it
+       is the one that lifts off the canvas. */
+    .questions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .q {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .q__label {
+      margin-bottom: 0.875rem;
+    }
+
+    /* Coral rule marks the consequence card — one accent on the slide. */
+    .q--stakes {
+      border-top: 0.1875rem solid var(--accent);
+      padding-top: calc(2rem - 0.1875rem);
+    }
+
+    /* ---- The concrete strip: what these deadlines actually look like ---- */
+    .examples {
+      padding-top: 1.5rem;
+      border-top: 0.0625rem solid var(--border-hair);
+    }
+
+    .examples__label {
+      margin-bottom: 1rem;
+    }
+
+    .examples__row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .ex {
+      padding-left: 0.875rem;
+      border-left: 0.0625rem solid var(--border-strong);
+      font-size: 0.9375rem;
+      line-height: 1.3;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .ex span {
+      display: block;
+      font-weight: 600;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="slide">
+    <div class="slide__body">
+      <!-- Heading -->
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">The problem</p>
+
+        <h1 class="t-display head__title rise" style="--d: 100">
+          Life admin is made of deadlines. Nothing collects them.
+        </h1>
+
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 200">
+          Insurance, bills, school fees, the car licence, warranties, medical follow-ups. Each one
+          has a date, and that date usually sits inside a document nobody opens twice.
+        </p>
+      </header>
+
+      <!-- What / Who / Why -->
+      <div class="questions">
+        <article class="card card--lg q rise" style="--d: 320">
+          <p class="t-label ink-subtle q__label">What the problem is</p>
+          <p class="t-body ink-muted">
+            Every household runs on official dates. They arrive as PDFs, letters, and emails, and
+            then they are forgotten. Today people keep them in their head, or type them into an app
+            by hand — which only works if they already know the date.
+          </p>
+        </article>
+
+        <article class="card card--lg q rise" style="--d: 400">
+          <p class="t-label ink-subtle q__label">Who has it</p>
+          <p class="t-body ink-muted">
+            Working adults, parents, and people living abroad. They are running six areas of life at
+            the same time — health, home, car, money, family, and pets — and every area brings its
+            own paperwork and its own dates.
+          </p>
+        </article>
+
+        <article class="card card--lg card--elevated q q--stakes rise" style="--d: 480">
+          <p class="t-label ink-accent q__label">Why it matters</p>
+          <p class="t-body ink-muted">
+            A missed date is not a small mistake. An expired insurance policy is a legal and
+            financial risk. A late bill adds a fee. A lapsed renewal can mean starting the whole
+            application again from the beginning.
+          </p>
+        </article>
+      </div>
+
+      <!-- Concrete examples -->
+      <section class="examples rise" style="--d: 580">
+        <p class="t-micro ink-subtle examples__label">A typical few months</p>
+        <div class="examples__row">
+          <p class="ex">Car insurance renewal<span>30 July</span></p>
+          <p class="ex">School fees<span>2 August</span></p>
+          <p class="ex">Passport expiry<span>14 September</span></p>
+          <p class="ex">Boiler warranty ends<span>1 October</span></p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Foot rail -->
+    <div class="slide__foot">
+      <div class="slide__wordmark">
+        <img src="assets/ghost.png" alt="" />
+        <span>Kitto</span>
+      </div>
+      <span class="t-micro t-num">03</span>
+    </div>
+  </main>
+</body>
+
+</html>

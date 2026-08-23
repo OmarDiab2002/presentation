@@ -1,0 +1,2142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kitto — Pitch Deck</title>
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="deck.css" />
+  <style>
+    /* ========================================================================
+     * DECK SHELL — all slides in one scrolling document
+     * ---------------------------------------------------------------------
+     * Root size is tuned so one slide (45rem) plus the gap below it (3rem)
+     * equals exactly 100vh: 48rem == 100vh gives 2.083vh per rem. The 1.25vw
+     * term still caps it on narrow windows so the 80rem width never clips.
+     *
+     * Slide content lives in theme.css (the design system and every shared
+     * pattern) and deck.css (per-slide layout). This block is only the shell.
+     * ==================================================================== */
+    html {
+      font-size: min(1.25vw, 2.083vh);
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      padding: 1.5rem 0;
+      min-height: 0;
+    }
+
+    .slide {
+      flex: none;
+      scroll-snap-align: center;
+      border-radius: var(--r-lg);
+      box-shadow: 0 0.5rem 2rem rgb(20 20 40 / 0.1);
+    }
+
+    /* Entrance choreography is held at frame zero until the slide is actually
+     * on screen, then released — otherwise every slide would have finished
+     * animating before you scrolled to it. The delays in `--d` do not elapse
+     * while paused, so each slide keeps its own stagger. */
+    .rise,
+    .settle {
+      animation-play-state: paused;
+    }
+
+    .slide.in .rise,
+    .slide.in .settle {
+      animation-play-state: running;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .rise,
+      .settle {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* The theme switch. Fixed to the window rather than a slide, because it
+     * belongs to the viewer, not to the deck's content — and it must not
+     * appear in an exported PDF. */
+    .theme-toggle {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.875rem;
+      border: 0;
+      border-radius: var(--r-pill);
+      background: var(--surface);
+      color: var(--ink-muted);
+      box-shadow: var(--shadow-elevated);
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms var(--ease-out-expo);
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-0.0625rem);
+    }
+
+    .theme-toggle__dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: var(--r-pill);
+      background: var(--accent);
+    }
+
+    @media print {
+      .theme-toggle {
+        display: none;
+      }
+
+      html {
+        scroll-snap-type: none;
+      }
+
+      body {
+        gap: 0;
+        padding: 0;
+      }
+
+      .slide {
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       1 · TITLE
+       =================================================================== -->
+  <section class="slide s-title">
+    <div class="slide__body">
+      <p class="slide__eyebrow t-label rise" style="--d: 0">ITI · Graduation Project 2026</p>
+
+      <div class="hero">
+        <div>
+          <div class="hero__name rise" style="--d: 120">
+            <h1 class="t-hero">Kitto</h1>
+            <span class="hero__dot"></span>
+          </div>
+
+          <div class="rule--short rise" style="--d: 220; margin-top: 1.5rem"></div>
+
+          <p class="t-display-sm hero__creed rise" style="--d: 300">
+            <em>Speak once.</em> Order follows.
+          </p>
+        </div>
+
+        <div class="mascot settle" style="--d: 260">
+          <img src="assets/ghost.png" alt="Kitto, the companion that keeps your life admin in order" />
+        </div>
+      </div>
+
+      <div class="team-block rise" style="--d: 620">
+        <p class="t-label ink-subtle team__label">Team</p>
+        <div class="team">
+          <p class="member">Mina Melad<span>Massoud</span></p>
+          <p class="member">Mahmoud Ahmed<span>Sayed Shoura</span></p>
+          <p class="member">Fady Adel<span>Botros Awdallah</span></p>
+          <p class="member">Omar Abdullah<span>Diab</span></p>
+          <p class="member">Omar Khaled<span>Abdelaziz</span></p>
+          <p class="member">Mario Magdy<span>Saber Kaldas</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       2 · AGENDA
+       =================================================================== -->
+  <section class="slide s-agenda">
+    <div class="slide__body">
+      <div class="agenda">
+        <div class="agenda__intro">
+          <p class="slide__eyebrow t-label rise" style="--d: 0; margin-bottom: 2rem">Agenda</p>
+          <h1 class="t-display rise" style="--d: 100">What we will cover</h1>
+          <p class="t-body-lg ink-muted rise" style="--d: 200">
+            The problem first. Then why the tools people already own do not close it. Then the
+            product, feature by feature.
+          </p>
+        </div>
+
+        <div class="agenda__list">
+          <div class="item rise" style="--d: 300">
+            <span class="item__num">01</span>
+            <div>
+              <h2 class="t-heading item__title">The problem</h2>
+              <p class="t-body-sm ink-muted">A hundred small things, all easy to forget.</p>
+            </div>
+          </div>
+
+          <div class="item rise" style="--d: 360">
+            <span class="item__num">02</span>
+            <div>
+              <h2 class="t-heading item__title">Where today's tools stop</h2>
+              <p class="t-body-sm ink-muted">Capture is solved. What comes after is not.</p>
+            </div>
+          </div>
+
+          <div class="item rise" style="--d: 420">
+            <span class="item__num">03</span>
+            <div>
+              <h2 class="t-heading item__title">The product</h2>
+              <p class="t-body-sm ink-muted">Every feature, shown running.</p>
+            </div>
+          </div>
+
+          <div class="item rise" style="--d: 480">
+            <span class="item__num">04</span>
+            <div>
+              <h2 class="t-heading item__title">How it is built</h2>
+              <p class="t-body-sm ink-muted">The model, the limits, and what is honest.</p>
+            </div>
+          </div>
+
+          <div class="item rise" style="--d: 540">
+            <span class="item__num">05</span>
+            <div>
+              <h2 class="t-heading item__title">The business</h2>
+              <p class="t-body-sm ink-muted">Pricing, and what is hard to copy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       3 · THE PROBLEM
+       =================================================================== -->
+  <section class="slide s-problem">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">The problem</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          Running a life means holding a hundred small things in your head at once.
+        </h1>
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+          Book the dentist. Renew the car insurance. Mum's birthday. The school form. Cancel the
+          trial before it charges. The vet. The passport, which takes months. Each one is easy.
+          Together they are heavy.
+        </p>
+      </header>
+
+      <div class="reasons">
+        <article class="card reason rise" style="--d: 300">
+          <span class="step-num reason__num">1</span>
+          <h2 class="t-heading-sm reason__title">They arrive at a bad time</h2>
+          <p class="t-body-sm ink-muted">
+            In the car, in the shower, as you fall asleep. Never at a desk with an app open.
+          </p>
+        </article>
+
+        <article class="card reason rise" style="--d: 360">
+          <span class="step-num reason__num">2</span>
+          <h2 class="t-heading-sm reason__title">Big and small feel the same</h2>
+          <p class="t-body-sm ink-muted">
+            Forgetting milk and forgetting insurance take the same space in your mind.
+          </p>
+        </article>
+
+        <article class="card reason rise" style="--d: 420">
+          <span class="step-num reason__num">3</span>
+          <h2 class="t-heading-sm reason__title">They live everywhere</h2>
+          <p class="t-body-sm ink-muted">
+            A calendar, a note, a drawer, an email, a memory. No single place holds them all.
+          </p>
+        </article>
+
+        <article class="card reason reason--stakes rise" style="--d: 480">
+          <span class="step-num reason__num">4</span>
+          <h2 class="t-heading-sm reason__title">Writing them down is work</h2>
+          <p class="t-body-sm ink-muted">
+            A minute of typing for a two-second thought. So people do not. They try to remember.
+          </p>
+        </article>
+      </div>
+
+      <div class="verdict rise" style="--d: 580">
+        <span class="pill pill--solid">The result</span>
+        <p class="t-body-lg">
+          A quiet, constant stress: <strong>you do not know what you have forgotten.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       4 · ONE NORMAL MONTH
+       =================================================================== -->
+  <section class="slide s-month col-body">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">The problem</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          One normal month, for one normal person.
+        </h1>
+      </header>
+
+      <div class="areas grow">
+        <div class="card area rise" style="--d: 220">
+          <span class="chip chip--health">&#127793;</span>
+          <div>
+            <h2 class="t-heading-sm area__name">Health</h2>
+            <ul class="area__list">
+              <li>Dentist appointment</li>
+              <li>Medicine refill</li>
+              <li>A check-up you keep delaying</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card area rise" style="--d: 270">
+          <span class="chip chip--home">&#127968;</span>
+          <div>
+            <h2 class="t-heading-sm area__name">Home</h2>
+            <ul class="area__list">
+              <li>Rent, electricity bill</li>
+              <li>Air conditioner service</li>
+              <li>The plumber you meant to call</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card area rise" style="--d: 320">
+          <span class="chip chip--car">&#128663;</span>
+          <div>
+            <h2 class="t-heading-sm area__name">Car</h2>
+            <ul class="area__list">
+              <li>Insurance renewal</li>
+              <li>Service, safety test</li>
+              <li>A fine with a deadline</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card area rise" style="--d: 370">
+          <span class="chip chip--finance">&#128176;</span>
+          <div>
+            <h2 class="t-heading-sm area__name">Finance</h2>
+            <ul class="area__list">
+              <li>Tax filing</li>
+              <li>A subscription renewing on the 14th</li>
+              <li>A trial about to charge</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card area rise" style="--d: 420">
+          <span class="chip chip--family">&#128106;</span>
+          <div>
+            <h2 class="t-heading-sm area__name">Family</h2>
+            <ul class="area__list">
+              <li>School form, school fees</li>
+              <li>A birthday</li>
+              <li>Someone's flight to collect</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card area rise" style="--d: 470">
+          <span class="chip chip--pets">&#128054;</span>
+          <div>
+            <h2 class="t-heading-sm area__name">Pets</h2>
+            <ul class="area__list">
+              <li>Vet visit</li>
+              <li>Flea treatment</li>
+              <li>Food that runs out Thursday</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="note rise" style="--d: 560">
+        <span class="pill pill--accent">Notice</span>
+        <p class="t-body-lg">
+          None of these are difficult. All of them are easy to forget. And almost none of them
+          involve paper.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       5 · WHAT PEOPLE ALREADY DO
+       =================================================================== -->
+  <section class="slide s-tools col-body">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">Where today's tools stop</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          Nobody faces this with nothing. Everybody already has a system.
+        </h1>
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+          Each one is good at one part of the job, and then it stops.
+        </p>
+      </header>
+
+      <div class="steps grow">
+        <article class="card rise" style="--d: 300">
+          <div class="step__head">
+            <span class="chip chip--sm chip--accent">&#129504;</span>
+            <h2 class="t-heading-sm">Your memory</h2>
+          </div>
+          <p class="t-body-sm ink-muted">
+            Free, instant, always with you. The real competitor.
+          </p>
+          <p class="t-body-sm ink-subtle step__stops">
+            It works for years. Then it fails, without making a sound.
+          </p>
+        </article>
+
+        <article class="card rise" style="--d: 360">
+          <div class="step__head">
+            <span class="chip chip--sm chip--finance">&#9989;</span>
+            <h2 class="t-heading-sm">A list</h2>
+          </div>
+          <p class="t-body-sm ink-muted">
+            Todoist, Apple Reminders, a notes app. Now it is written down.
+          </p>
+          <p class="t-body-sm ink-subtle step__stops">
+            You still do all the thinking — including how early to be warned.
+          </p>
+        </article>
+
+        <article class="card rise" style="--d: 420">
+          <div class="step__head">
+            <span class="chip chip--sm chip--car">&#128197;</span>
+            <h2 class="t-heading-sm">A calendar</h2>
+          </div>
+          <p class="t-body-sm ink-muted">
+            Perfect for the dentist at three o'clock.
+          </p>
+          <p class="t-body-sm ink-subtle step__stops">
+            Most admin is not an event. It is a period you must act inside.
+          </p>
+        </article>
+
+        <article class="card rise" style="--d: 480">
+          <div class="step__head">
+            <span class="chip chip--sm chip--home">&#128193;</span>
+            <h2 class="t-heading-sm">A drawer</h2>
+          </div>
+          <p class="t-body-sm ink-muted">
+            The papers have to go somewhere, so they go here.
+          </p>
+          <p class="t-body-sm ink-subtle step__stops">
+            Papers with deadlines, kept somewhere with none. That is how things get missed.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       6 · AND THEN THERE IS YOUR PHONE ASSISTANT
+       =================================================================== -->
+  <section class="slide s-capture">
+    <div class="slide__body">
+      <div class="split">
+        <div>
+          <p class="slide__eyebrow t-label rise" style="--d: 0; margin-bottom: 1.75rem">
+            Where today's tools stop
+          </p>
+          <h1 class="t-display rise" style="--d: 100">
+            And then there is your phone assistant.
+          </h1>
+          <p class="t-body-lg ink-muted rise" style="--d: 200; margin-top: 1.25rem">
+            This one deserves respect. Siri and Gemini understand normal speech now. Gemini can
+            think, hold a conversation and save tasks. ChatGPT sets reminders too. It is not a toy,
+            and it solved the hardest part of the old problem.
+          </p>
+        </div>
+
+        <div>
+          <div class="said rise" style="--d: 300">
+            <p class="t-label ink-subtle" style="margin-bottom: 0.5rem">You say</p>
+            <p class="t-serif">"Remind me to call the bank on Tuesday at five."</p>
+          </div>
+
+          <p class="arrow rise" style="--d: 360">&#8595;</p>
+
+          <div class="got rise" style="--d: 400">
+            <p class="t-label ink-subtle" style="margin-bottom: 0.5rem">You get</p>
+            <p class="t-serif">One alarm. At exactly the moment you named.</p>
+          </div>
+
+          <div class="verdict rise" style="--d: 500">
+            <p class="t-heading">
+              It did what you <strong>said</strong>. It has no opinion about what you
+              <strong>meant</strong>.
+            </p>
+            <p class="t-body ink-muted">
+              It never asked whether that moment was any use. It did not read the letter the date
+              came from. It does not hold the other fifty things you have to do, so it cannot see that two of
+              them collide. By next month it has forgotten the conversation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       7 · THE TURN
+       =================================================================== -->
+  <section class="slide s-quote">
+    <div class="slide__body">
+      <p class="slide__eyebrow t-label rise" style="--d: 0; margin-bottom: 2.5rem">
+        Where today's tools stop
+      </p>
+
+      <h1 class="t-hero big rise" style="--d: 120; font-size: 4.75rem">
+        Capture is already solved.<br />
+        <em>What comes after capture is not.</em>
+      </h1>
+
+      <div class="after rise" style="--d: 340">
+        <p class="t-body-lg ink-muted">
+          Getting words into a system is the easy part, and every assistant now does it well. The
+          hard part is everything after: knowing how early to warn you, reading the paper the date
+          came from, keeping everything you have to do in one place, noticing when two of them collide,
+          and being honest when it is not sure.
+        </p>
+        <p class="t-heading" style="margin-top: 1.25rem">That is where Kitto lives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       8 · THE COMPARISON
+       =================================================================== -->
+  <section class="slide s-compare">
+    <div class="slide__body">
+      <p class="slide__eyebrow t-label rise" style="--d: 0">Where today's tools stop</p>
+
+      <header class="head">
+        <h1 class="t-display-sm rise" style="--d: 100">
+          What each tool really does, and where it ends.
+        </h1>
+        <p class="t-body-lg ink-muted rise" style="--d: 180">
+          Every one of them is good at something. None of them opens the document the date is
+          written in, and none of them holds the whole picture.
+        </p>
+      </header>
+
+      <table class="cmp rise" style="--d: 300">
+        <colgroup>
+          <col class="c-label" />
+          <col />
+          <col />
+          <col />
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="c-head-label" scope="col">
+              <span class="t-label ink-subtle">What it does</span>
+            </th>
+            <th scope="col">
+              <span class="col-name">To-do apps</span>
+              <span class="col-eg">Todoist, Apple Reminders</span>
+            </th>
+            <th scope="col">
+              <span class="col-name">Assistants</span>
+              <span class="col-eg">Siri, Gemini, ChatGPT</span>
+            </th>
+            <th class="own" scope="col">
+              <span class="col-name">Kitto</span>
+              <span class="col-eg">This project</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Makes a reminder from your voice</th>
+            <td class="v-part">Some</td>
+            <td class="v-yes">Yes</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Knows how early to warn you</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Reads your bills and letters</th>
+            <td class="v-no">No</td>
+            <td class="v-part">Reads only</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Finds a conflict before you save</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Shows the page a date came from</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Asks when it is not sure</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Free, already on your phone</th>
+            <td class="v-yes">Yes</td>
+            <td class="v-yes">Yes</td>
+            <td class="own v-no">No</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="trade rise" style="--d: 460">
+        <span class="pill pill--outline">The trade</span>
+        <p class="t-body-sm ink-muted">
+          The last row is the price we pay, and we say it out loud. Kitto has to be worth opening,
+          and it costs about $3 of model calls per active user each month — a measured figure, not
+          an estimate. We accept that because rows two to six are where the real work is.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       9 · ONE SENTENCE, SAID TO BOTH
+       =================================================================== -->
+  <section class="slide s-oneline">
+    <div class="slide__body">
+      <p class="slide__eyebrow t-label rise" style="--d: 0">Where today's tools stop</p>
+
+      <div class="oneline">
+      <div class="sentence rise" style="--d: 100">
+        <span class="pill pill--solid">You say</span>
+        <p class="quote">"My car insurance ends on the 30th."</p>
+      </div>
+
+      <div class="versus">
+        <article class="card card--lg side rise" style="--d: 260">
+          <div class="side__head">
+            <span class="chip chip--sm">&#128241;</span>
+            <h2 class="t-heading">A normal assistant</h2>
+          </div>
+          <p class="t-body ink-muted">
+            It creates a reminder for the 30th. On the 30th, your phone rings.
+          </p>
+          <p class="t-body ink-muted">
+            That same day, your insurance ends. There is no time left to compare prices, call
+            anyone, or send documents.
+          </p>
+          <p class="t-heading-sm" style="margin-top: 1.25rem">
+            The reminder was correct, and useless.
+          </p>
+        </article>
+
+        <article class="card card--lg side side--ours rise" style="--d: 340">
+          <div class="side__head">
+            <span class="chip chip--sm chip--accent">&#128123;</span>
+            <h2 class="t-heading">Kitto</h2>
+          </div>
+          <ul class="does">
+            <li><span class="n">1</span><span>Knows insurance needs <b>about a month</b>, so it warns you on the 1st.</span></li>
+            <li><span class="n">2</span><span>Files it under <b>Car</b>, with everything else about your car.</span></li>
+            <li><span class="n">3</span><span>Checks it against everything else, and says if that week is <b>already full</b>.</span></li>
+            <li><span class="n">4</span><span>If you scanned the letter, the <b>amount</b> joins your money view.</span></li>
+            <li><span class="n">5</span><span>If it was unsure of the date, it <b>asks</b> — and saves the job anyway.</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="close rise" style="--d: 480">
+        <p class="t-body-lg">
+          The reminder is the same. <strong>The result is not.</strong>
+        </p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       10 · THE FIVE DIFFERENCES
+       =================================================================== -->
+  <section class="slide s-five col-body">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">Where today's tools stop</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          Five differences, and every one is visible in the app.
+        </h1>
+      </header>
+
+      <div class="five grow">
+        <article class="card one rise" style="--d: 240">
+          <span class="step-num one__num">1</span>
+          <h2 class="t-heading-sm one__title">It knows what things are</h2>
+          <p class="t-body-sm ink-muted">
+            "Renew my passport" and "buy milk" are the same sentence to an assistant. One needs six
+            months of warning. The other needs none.
+          </p>
+        </article>
+
+        <article class="card one rise" style="--d: 300">
+          <span class="step-num one__num">2</span>
+          <h2 class="t-heading-sm one__title">It turns paper into reminders</h2>
+          <p class="t-body-sm ink-muted">
+            A chatbot can read your letter and tell you what it says. It will not put it into your
+            life and wake you at the right time.
+          </p>
+        </article>
+
+        <article class="card one rise" style="--d: 360">
+          <span class="step-num one__num">3</span>
+          <h2 class="t-heading-sm one__title">It sees the whole picture</h2>
+          <p class="t-body-sm ink-muted">
+            Other apps save reminders that know nothing about each other. Kitto holds them in one
+            place, so it can spot a conflict or add up the cost.
+          </p>
+        </article>
+
+        <article class="card one rise" style="--d: 420">
+          <span class="step-num one__num">4</span>
+          <h2 class="t-heading-sm one__title">You can check its work</h2>
+          <p class="t-body-sm ink-muted">
+            An assistant gives you a date and no way to check it. Kitto shows the exact page it read
+            the date from, so you can check it yourself.
+          </p>
+        </article>
+
+        <article class="card one rise" style="--d: 480">
+          <span class="step-num one__num">5</span>
+          <h2 class="t-heading-sm one__title">Reminding is a plan</h2>
+          <p class="t-body-sm ink-muted">
+            Not one alarm. An early warning, a middle check, the day before, the day itself, then a
+            few follow-ups. Then it stops.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       11 · HOW IT FEELS
+       =================================================================== -->
+  <section class="slide s-feel">
+    <div class="slide__body">
+      <div class="feel">
+        <div>
+          <p class="slide__eyebrow t-label rise" style="--d: 0; margin-bottom: 2rem">The product</p>
+          <h1 class="t-display rise" style="--d: 100">
+            The goal is relief, not productivity.
+          </h1>
+          <p class="t-body-lg ink-muted rise" style="--d: 220; margin-top: 1.25rem">
+            Kitto does not make you faster. It has no points and no streaks. It makes the pile in
+            the back of your mind quieter.
+          </p>
+        </div>
+
+        <div class="rules">
+          <article class="card rise" style="--d: 320">
+            <h2 class="t-heading-sm rule-card__title">One next thing</h2>
+            <p class="t-body-sm ink-muted">
+              The home screen shows the single next thing, not a backlog.
+            </p>
+            <p class="t-body-sm ink-subtle never">A list that only grows is a game you always lose.</p>
+          </article>
+
+          <article class="card rise" style="--d: 380">
+            <h2 class="t-heading-sm rule-card__title">No guilt</h2>
+            <p class="t-body-sm ink-muted">
+              A late job is just a date that passed. No red warnings.
+            </p>
+            <p class="t-body-sm ink-subtle never">It never says you are falling behind.</p>
+          </article>
+
+          <article class="card rise" style="--d: 440">
+            <h2 class="t-heading-sm rule-card__title">A small nod</h2>
+            <p class="t-body-sm ink-muted">
+              Paying a bill does not deserve confetti. Clearing a whole day gets one warm moment.
+            </p>
+            <p class="t-body-sm ink-subtle never">Then it moves on.</p>
+          </article>
+
+          <article class="card rise" style="--d: 500">
+            <h2 class="t-heading-sm rule-card__title">It absorbs stress</h2>
+            <p class="t-body-sm ink-muted">
+              "Rent is due tomorrow and you marked it urgent. Want it first today?"
+            </p>
+            <p class="t-body-sm ink-subtle never">Never "3 OVERDUE TASKS".</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       12 · THE FIVE WAYS IN
+       =================================================================== -->
+  <section class="slide s-ways">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">The product</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          Jobs arrive in every possible form. So there are five ways in.
+        </h1>
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+          At least one of them fits the moment you actually remember something.
+        </p>
+      </header>
+
+      <div class="ways">
+        <article class="card way way--main rise" style="--d: 260">
+          <span class="chip chip--accent way__chip">&#127908;</span>
+          <h2 class="t-heading-sm way__title">Say it</h2>
+          <p class="t-body-sm">
+            The main way. Speak one normal sentence and save. You never wait for it to think.
+          </p>
+        </article>
+
+        <article class="card way rise" style="--d: 320">
+          <span class="chip chip--home way__chip">&#128247;</span>
+          <h2 class="t-heading-sm way__title">Scan it</h2>
+          <p class="t-body-sm ink-muted">
+            For the part that arrives on paper. A bill, a letter, a policy, a form, a PDF.
+          </p>
+        </article>
+
+        <article class="card way rise" style="--d: 380">
+          <span class="chip chip--pets way__chip">&#128172;</span>
+          <h2 class="t-heading-sm way__title">Chat with it</h2>
+          <p class="t-body-sm ink-muted">
+            Ask what is due. Move things. Add things. Question anything you already saved.
+          </p>
+        </article>
+
+        <article class="card way rise" style="--d: 440">
+          <span class="chip chip--finance way__chip">&#9997;</span>
+          <h2 class="t-heading-sm way__title">Type it</h2>
+          <p class="t-body-sm ink-muted">
+            The ordinary form. Nothing forces you to use the AI at all.
+          </p>
+        </article>
+
+        <article class="card way rise" style="--d: 500">
+          <span class="chip chip--car way__chip">&#128225;</span>
+          <h2 class="t-heading-sm way__title">Follow a calendar</h2>
+          <p class="t-body-sm ink-muted">
+            School terms, collection days, fixtures. Google Calendar and Tasks.
+          </p>
+        </article>
+      </div>
+
+      <div class="foot-note rise" style="--d: 580">
+        <span class="pill pill--accent">Everything after this</span>
+        <p class="t-body-lg">
+          Whichever door it came through, the rest of the product treats it the same way.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       13 · FEATURE · SAY IT
+       ----------------------------------------------------------------------
+       Every feature slide below shares one shape: the argument on the left,
+       the running product on the right.
+
+       Each <video> names TWO files — the light render and the dark one — and
+       the page swaps between them with the theme. Both come from the Remotion
+       project in video/: `npm run render` rebuilds every scene in both
+       palettes, `npm run render -- <Scene>` rebuilds one. Editing a scene means
+       re-rendering both, or the slide shows a white phone on a black page.
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Capture</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              Say one normal sentence. That is the whole interaction.
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              Tap the microphone, speak, save. You never watch a loading circle — the work happens
+              after you have put the phone down, and a notification tells you it is done.
+            </p>
+          </header>
+
+          <div class="rise" style="--d: 280">
+            <p class="said-line t-serif">
+              "Dentist Thursday at three, bring the referral letter, and buy bread."
+            </p>
+          </div>
+
+          <div class="note rise" style="--d: 400">
+            <p class="t-body">
+              <strong>One sentence, three matters — and only two of them ring.</strong>
+              <span class="ink-muted">
+                "Buy bread" is saved as a plain list item and never notifies you. A reminder for
+                bread is noise. Kitto only interrupts when interrupting helps.
+              </span>
+            </p>
+            <p class="t-body-sm ink-subtle" style="margin-top: 0.75rem">
+              The recording carries on into two harder cases: a bill with no date, and a booking
+              that lands on something already in the diary.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/01-speak.mp4" data-src-dark="assets/video/01-speak-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       14 · FEATURE · SCAN IT
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Capture</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              For the part that arrives on paper, point the camera.
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              Kitto reads the words and the layout together. Layout matters: dates and amounts sit
+              inside boxes and tables, and their position carries meaning.
+            </p>
+          </header>
+
+          <div class="bullets rise" style="--d: 280">
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">It knows what the document is</strong>
+                <span class="ink-muted">Bill, statement, letter, form, receipt, insurance,
+                  medical, legal, identity, tax.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">It pulls out what matters</strong>
+                <span class="ink-muted">Dates, amounts, policy numbers, names — then suggests the
+                  jobs that follow from them.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">Nothing is saved until you check it</strong>
+                <span class="ink-muted">Each suggestion shows how sure Kitto is, with the original
+                  page one tap away. Accept, edit, or discard.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/02-scan.mp4" data-src-dark="assets/video/02-scan-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       15 · FEATURE · CHAT
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Capture</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              An assistant that can act, and asks before it does anything large.
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              Type or speak. It can create, change, complete, delay, delete and search your jobs.
+            </p>
+          </header>
+
+          <div class="rise" style="--d: 280">
+            <p class="said-line t-serif">"What do I have on Thursday?"</p>
+            <p class="said-line t-serif">"Move the dentist to next Tuesday."</p>
+            <p class="said-line t-serif">"Did I finish the school form?"</p>
+          </div>
+
+          <div class="note rise" style="--d: 420">
+            <div class="row g-4">
+              <span class="pill pill--solid">The rule</span>
+              <p class="t-body ink-muted">
+                Anything that deletes or changes a lot stops and waits for your confirmation. And
+                when it answers using something you already saved, it shows you which item it read.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/03-chat.mp4" data-src-dark="assets/video/03-chat-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       16 · FEATURE · THE SIX AREAS
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Sorting</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              Everything is filed into one of six areas of life. You never choose.
+            </h1>
+          </header>
+
+          <div class="cols-3 rise" style="--d: 240; gap: 1rem">
+            <div class="row g-3"><span class="chip chip--sm chip--health">&#127793;</span><span class="t-heading-sm">Health</span></div>
+            <div class="row g-3"><span class="chip chip--sm chip--home">&#127968;</span><span class="t-heading-sm">Home</span></div>
+            <div class="row g-3"><span class="chip chip--sm chip--car">&#128663;</span><span class="t-heading-sm">Car</span></div>
+            <div class="row g-3"><span class="chip chip--sm chip--finance">&#128176;</span><span class="t-heading-sm">Finance</span></div>
+            <div class="row g-3"><span class="chip chip--sm chip--family">&#128106;</span><span class="t-heading-sm">Family</span></div>
+            <div class="row g-3"><span class="chip chip--sm chip--pets">&#128054;</span><span class="t-heading-sm">Pets</span></div>
+          </div>
+
+          <div class="bullets rise" style="--d: 360; margin-top: 1.75rem">
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">You read the area before you read the words</strong>
+                <span class="ink-muted">Each area has its own colour and emoji badge. This is the
+                  signature mark of the system.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">A bulk clean-up you approve first</strong>
+                <span class="ink-muted">Re-sorting a group shows a before-and-after of every
+                  change. Changing your own choices without asking is not help.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/04-areas.mp4" data-src-dark="assets/video/04-areas-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       17 · FEATURE · WHEN TO WARN YOU
+       =================================================================== -->
+  <section class="slide s-feat s-lead">
+    <div class="slide__body">
+      <div class="feature feature--tight">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Reminders</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              It decides how early to warn you, from what the thing is.
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              Most life admin needs preparation time. Telling you your passport expires today is not
+              a reminder. It is too late.
+            </p>
+          </header>
+
+          <table class="lead rise" style="--d: 280">
+            <thead>
+              <tr>
+                <th scope="col"><span class="t-label">Type of job</span></th>
+                <th scope="col"><span class="t-label">Warning</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Passport renewal</th><td>6 months</td></tr>
+              <tr><th scope="row">Driving licence</th><td>2 months</td></tr>
+              <tr><th scope="row">Car registration, safety test</th><td>6 weeks</td></tr>
+              <tr><th scope="row">Insurance, warranties, policies</th><td>1 month</td></tr>
+              <tr><th scope="row">Subscriptions, memberships</th><td>3 weeks</td></tr>
+              <tr><th scope="row">Taxes and official filings</th><td>2 weeks</td></tr>
+              <tr><th scope="row">Bills, rent, electricity</th><td>5 days</td></tr>
+              <tr><th scope="row">Appointments</th><td>1 day</td></tr>
+            </tbody>
+          </table>
+
+          <div class="note rise" style="--d: 420">
+            <p class="t-body-sm ink-muted">
+              <strong class="ink">Priority sets how often it reminds you.</strong> A low job gets one quiet
+              reminder. An urgent one gets an early warning, a middle check, the day before, and the
+              day itself. <strong class="ink">Late notice is handled:</strong> told six days before
+              a job that wants a month, Kitto warns at three days rather than skipping.
+              <strong class="ink">It never wakes you at night.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/05-reminders.mp4" data-src-dark="assets/video/05-reminders-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       18 · FEATURE · IT ASKS INSTEAD OF GUESSING
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Trust</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              When being wrong is expensive, it asks.
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              Kitto weighs how bad it would be to get something wrong, and behaves differently for
+              each answer.
+            </p>
+          </header>
+
+          <div class="bullets rise" style="--d: 280">
+            <div class="bullet">
+              <span class="bullet__mark" style="background: var(--ink-subtle)"></span>
+              <p class="t-body">
+                <strong class="bullet__title">"Buy bread" — nothing at risk</strong>
+                <span class="ink-muted">It just saves it. No question, no notification.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark" style="background: var(--warning)"></span>
+              <p class="t-body">
+                <strong class="bullet__title">"Call the bank" — a wrong guess costs nothing</strong>
+                <span class="ink-muted">It picks a sensible time, and tells you which time it
+                  picked.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">"Pay the fine" — a wrong guess is expensive</strong>
+                <span class="ink-muted">It asks the question that decides the deadline: "When is it
+                  due?" Not "when do you want a reminder?"</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="note rise" style="--d: 440">
+            <p class="t-body">
+              <strong>Asking never loses your job.</strong>
+              <span class="ink-muted">
+                The thing you said is already saved. Only the reminder is held back, so it can never
+                ring on an invented date. Three questions become one card, not three alerts.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/06-questions.mp4" data-src-dark="assets/video/06-questions-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       19 · FEATURE · CLASHES
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Reminders</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              It finds the conflict before you agree to it, and offers a way out.
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              Two kinds: a <strong>time conflict</strong>, where two things cannot both happen, and a
+              <strong>duplicate</strong>, where you already have this job.
+            </p>
+          </header>
+
+          <div class="bullets rise" style="--d: 280">
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">Checked before anything is saved</strong>
+                <span class="ink-muted">Not discovered on the day. The check runs while you are
+                  still choosing.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">It offers free times, not just a warning</strong>
+                <span class="ink-muted">A complaint you cannot act on is just an obstacle.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">The times fit the kind of job</strong>
+                <span class="ink-muted">A film gets an evening. A dentist gets working hours.
+                  Offering 9am for a cinema trip reads as an assistant that was not
+                  listening.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/07-clash.mp4" data-src-dark="assets/video/07-clash-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       20 · FEATURE · IT SHOWS ITS SOURCE
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Trust</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              Every date and amount shows the page it was read from.
+            </h1>
+          </header>
+
+          <div class="rise" style="--d: 220">
+            <div class="row-card" style="max-width: 32rem">
+              <span class="chip chip--car">&#128663;</span>
+              <div style="flex: 1">
+                <p class="t-heading-sm">Renew car insurance</p>
+                <p class="t-body-sm ink-muted">Due 30 September &middot; EGP 4,120</p>
+              </div>
+              <span class="cite">&#128196; policy.pdf &middot; p.2</span>
+            </div>
+          </div>
+
+          <div class="block block--accent rise" style="--d: 340" >
+            <p class="quote" style="font-size: 1.75rem">
+              One wrong reminder loses trust forever. Being right afterwards does not bring it back.
+            </p>
+          </div>
+
+          <div class="note rise" style="--d: 440">
+            <p class="t-body-sm ink-muted">
+              Tap the source to open the original. Amounts read from a document are marked as read;
+              amounts you typed are not, because you already know where they came from. When Kitto is
+              unsure of a value, it marks it clearly instead of showing it as a fact.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/08-trust.mp4" data-src-dark="assets/video/08-trust-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       21 · FEATURE · THE HOME SCREEN
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Every day</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              The home screen answers one question: what needs me right now?
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              It refuses to show you everything, on purpose.
+            </p>
+          </header>
+
+          <div class="bullets rise" style="--d: 280">
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">One thing, large, with Done and Not today</strong>
+                <span class="ink-muted">Then three more at most, then "4 more in Matters".</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">Needs you</strong>
+                <span class="ink-muted">The three things actually waiting on you: guesses to
+                  confirm, scans to review, jobs that have slipped.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">A one-line brief for the day</strong>
+                <span class="ink-muted">Written by Kitto. Every number inside it is calculated from
+                  your real jobs, never invented by the model.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="note rise" style="--d: 440">
+            <p class="t-body-sm ink-muted">
+              When the day is genuinely clear it says so and tells you to rest. A brand-new account
+              gets different words entirely — "you are all caught up" means nothing to someone with
+              nothing to catch up on.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/09-home.mp4" data-src-dark="assets/video/09-home-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       22 · FEATURE · THE WORKSPACE
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Every day</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              And when you do want everything, real tools for a list that grows.
+            </h1>
+          </header>
+
+          <div class="cols-2 rise" style="--d: 260">
+            <div class="bullets">
+              <div class="bullet">
+                <span class="bullet__mark"></span>
+                <p class="t-body"><strong class="bullet__title">Group and filter</strong>
+                  <span class="ink-muted">By time, area, priority, type, tags, date range.</span></p>
+              </div>
+              <div class="bullet">
+                <span class="bullet__mark"></span>
+                <p class="t-body"><strong class="bullet__title">Search in normal language</strong>
+                  <span class="ink-muted">Not only exact words.</span></p>
+              </div>
+              <div class="bullet">
+                <span class="bullet__mark"></span>
+                <p class="t-body"><strong class="bullet__title">Act on many at once</strong>
+                  <span class="ink-muted">With an undo.</span></p>
+              </div>
+            </div>
+
+            <div class="bullets">
+              <div class="bullet">
+                <span class="bullet__mark"></span>
+                <p class="t-body"><strong class="bullet__title">Small steps inside a job</strong>
+                  <span class="ink-muted">Each one tickable on its own.</span></p>
+              </div>
+              <div class="bullet">
+                <span class="bullet__mark"></span>
+                <p class="t-body"><strong class="bullet__title">A trash you can undo</strong>
+                  <span class="ink-muted">Deleted jobs come back until you empty it.</span></p>
+              </div>
+              <div class="bullet">
+                <span class="bullet__mark"></span>
+                <p class="t-body"><strong class="bullet__title">Summaries you can open</strong>
+                  <span class="ink-muted">Tap "4 overdue" and the list filters to those four.</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note rise" style="--d: 440">
+            <p class="t-body-sm ink-muted">
+              Every figure in a summary is calculated from your real data. The model only names the
+              themes and writes the one question. A number written by an AI is a good place for a
+              confident mistake to hide.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/10-matters.mp4" data-src-dark="assets/video/10-matters-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       23 · FEATURE · MONEY
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Money</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              It already reads your bills for the dates. The amounts come free.
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              Spending this month against last. A trend over 3, 6 or 12 months. A breakdown by area.
+              What is still to pay, and what is late.
+            </p>
+          </header>
+
+          <div class="cols-2 rise" style="--d: 280">
+            <article class="card">
+              <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">Currencies stay separate</h2>
+              <p class="t-body-sm ink-muted">
+                There is no exchange rate in the product, so a combined total could only be invented
+                — and an invented number looks exactly as confident as a real one.
+              </p>
+            </article>
+            <article class="card">
+              <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">It says what it could not see</h2>
+              <p class="t-body-sm ink-muted">
+                "Read from 8 of 12 documents. Anything paid outside Kitto is not counted." On the
+                page, as a plain sentence.
+              </p>
+            </article>
+          </div>
+
+          <div class="note rise" style="--d: 440">
+            <div class="row g-4">
+              <span class="pill pill--outline">Not</span>
+              <p class="t-body-sm ink-muted">
+                Not a budgeting app. Not financial advice. Not connected to your bank. It is an
+                analysis of what your bills and renewals cost, built from documents Kitto was already
+                reading.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/11-money.mp4" data-src-dark="assets/video/11-money-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       24 · FEATURE · DOCUMENTS AND NOTIFICATIONS
+       =================================================================== -->
+  <section class="slide s-feat">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Every day</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              The paper is kept, and the nudge is answerable from the lock screen.
+            </h1>
+          </header>
+
+          <div class="bullets rise" style="--d: 260">
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">Every document you scanned, sorted by kind</strong>
+                <span class="ink-muted">Each one shows the jobs it created. The original is always
+                  one tap away.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">Real phone notifications, with buttons</strong>
+                <span class="ink-muted">"Done" and "Later today" sit on the notification itself.
+                  You answer without opening the app.</span>
+              </p>
+            </div>
+            <div class="bullet">
+              <span class="bullet__mark"></span>
+              <p class="t-body">
+                <strong class="bullet__title">And a feed inside the app</strong>
+                <span class="ink-muted">Reminders, questions and finished scans, with an unread
+                  count on the bell.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/12-documents.mp4" data-src-dark="assets/video/12-documents-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       25 · FEATURE · ARABIC AND RTL
+       =================================================================== -->
+  <section class="slide s-feat s-arabic">
+    <div class="slide__body">
+      <div class="feature">
+        <div class="feature__body">
+          <header class="head">
+            <p class="slide__eyebrow t-label rise" style="--d: 0">The product · Language</p>
+            <h1 class="t-display-sm head__title rise" style="--d: 100">
+              Fully English and fully Arabic, including right-to-left.
+            </h1>
+            <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+              Not a half translation with English showing through. Not a mirrored layout with broken
+              spacing. The AI reads Arabic documents and speech, and replies in Arabic.
+            </p>
+          </header>
+
+          <div class="why">
+            <div class="why__item rise" style="--d: 280">
+              <span class="step-num">1</span>
+              <p class="t-body"><strong>A large market that Western productivity apps serve
+                  badly.</strong></p>
+            </div>
+            <div class="why__item rise" style="--d: 340">
+              <span class="step-num">2</span>
+              <p class="t-body">
+                <strong>Life admin is where a second language hurts most.</strong>
+                <span class="ink-muted">Official letters and government forms are the hardest
+                  documents to read in a language that is not your first — and the most expensive to
+                  misread.</span>
+              </p>
+            </div>
+            <div class="why__item rise" style="--d: 400">
+              <span class="step-num">3</span>
+              <p class="t-body">
+                <strong>It is genuinely hard to build.</strong>
+                <span class="ink-muted">Most competing products do not do it.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature__media">
+          <div class="vid vid--phone settle" style="--d: 340">
+            <div class="vid__screen">
+              <video data-src-light="assets/video/13-arabic.mp4" data-src-dark="assets/video/13-arabic-dark.mp4" muted loop playsinline></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       26 · WHERE IT RUNS
+       =================================================================== -->
+  <section class="slide s-runs col-body">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">How it is built</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          One product, three places.
+        </h1>
+      </header>
+
+      <div class="platforms grow">
+        <article class="card card--lg rise" style="--d: 220">
+          <span class="chip chip--lg chip--finance platform__chip">&#127760;</span>
+          <h2 class="t-serif">In a browser</h2>
+          <p class="t-body ink-muted" style="margin-top: 0.5rem">
+            The full app, at a web address. Nothing to install.
+          </p>
+        </article>
+
+        <article class="card card--lg rise" style="--d: 290">
+          <span class="chip chip--lg chip--car platform__chip">&#128241;</span>
+          <h2 class="t-serif">On iPhone</h2>
+          <p class="t-body ink-muted" style="margin-top: 0.5rem">
+            A real app from the App Store.
+          </p>
+        </article>
+
+        <article class="card card--lg rise" style="--d: 360">
+          <span class="chip chip--lg chip--health platform__chip">&#129302;</span>
+          <h2 class="t-serif">On Android</h2>
+          <p class="t-body ink-muted" style="margin-top: 0.5rem">
+            A real app from the Play Store.
+          </p>
+        </article>
+      </div>
+
+      <div class="native rise" style="--d: 460">
+        <p class="t-heading">
+          The phone versions are not a website with features missing.
+        </p>
+        <div class="native__row">
+          <p class="t-body-sm ink-muted">
+            <strong class="ink">The real camera</strong> for scanning documents.
+          </p>
+          <p class="t-body-sm ink-muted">
+            <strong class="ink">The real microphone</strong>, including recording while the screen
+            is off.
+          </p>
+          <p class="t-body-sm ink-muted">
+            <strong class="ink">Real system notifications</strong> with buttons on the lock screen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       27 · HOW IT IS BUILT
+       =================================================================== -->
+  <section class="slide s-stack">
+    <div class="slide__body">
+      <div class="stack">
+        <div>
+          <p class="slide__eyebrow t-label rise" style="--d: 0; margin-bottom: 1.75rem">
+            How it is built
+          </p>
+          <h1 class="t-display rise" style="--d: 100">One model, three jobs.</h1>
+          <p class="t-body ink-muted rise" style="--d: 200; margin-top: 1rem">
+            Gemini 2.5 Flash. Chosen because Kitto sends it three different kinds of input, not
+            only text.
+          </p>
+
+          <div class="modes">
+            <div class="mode rise" style="--d: 300">
+              <span class="chip chip--sm chip--accent">&#127908;</span>
+              <div>
+                <p class="t-heading-sm">Audio</p>
+                <p class="t-body-sm ink-muted">Voice notes, sent as sound</p>
+              </div>
+            </div>
+            <div class="mode rise" style="--d: 350">
+              <span class="chip chip--sm chip--finance">&#128196;</span>
+              <div>
+                <p class="t-heading-sm">PDF</p>
+                <p class="t-body-sm ink-muted">Whole documents, pages intact</p>
+              </div>
+            </div>
+            <div class="mode rise" style="--d: 400">
+              <span class="chip chip--sm chip--home">&#128247;</span>
+              <div>
+                <p class="t-heading-sm">Images</p>
+                <p class="t-body-sm ink-muted">Camera captures</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reasons">
+          <article class="card rise" style="--d: 320">
+            <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">Why not a text-only model</h2>
+            <p class="t-body-sm ink-muted">
+              It would need a separate speech service and a separate document service. Each adds
+              cost and a new way to fail. And ordinary document scanning throws away the layout of
+              the page — which is exactly where dates and amounts live.
+            </p>
+          </article>
+
+          <article class="card rise" style="--d: 380">
+            <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">Structured answers, not prose</h2>
+            <p class="t-body-sm ink-muted">
+              The model fills a fixed shape — title, date, area, priority, confidence — and that
+              shape is checked before anything is saved. It is never asked to write text a program
+              then has to interpret.
+            </p>
+          </article>
+
+          <article class="card rise" style="--d: 440">
+            <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">The AI cannot act alone</h2>
+            <p class="t-body-sm ink-muted">
+              It proposes actions. The app checks every one. Anything destructive stops and asks
+              you first.
+            </p>
+          </article>
+
+          <article class="card rise" style="--d: 500">
+            <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">It only sees what you give it</h2>
+            <p class="t-body-sm ink-muted">
+              No inbox reading, no cloud browsing. Wherever there was a choice between wide access
+              and narrow access, we took narrow.
+            </p>
+          </article>
+
+          <article class="card card--sunken limit rise" style="--d: 560">
+            <div class="row g-4" style="align-items: flex-start">
+              <span class="pill pill--warning">The honest limit</span>
+              <p class="t-body-sm ink-muted">
+                The best document reading available today is about <strong class="ink">90&ndash;94%
+                  accurate</strong> on clean documents. We do not claim 99%. Instead every date
+                and amount shows the page it came from, and anything unclear becomes a question
+                rather than a reminder.
+                A named limit with a real answer is stronger than a claim of perfection.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       28 · BUILT, AND NOT BUILT
+       =================================================================== -->
+  <section class="slide s-status">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">How it is built</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          What works today, and what does not.
+        </h1>
+      </header>
+
+      <div class="two">
+        <section class="rise" style="--d: 220">
+          <div class="row g-3">
+            <span class="pill pill--success">Working today</span>
+          </div>
+          <ul class="list">
+            <li><b>The reminder engine</b> — warning times, repeats, follow-ups that stop</li>
+            <li><b>Voice capture</b> in English and Arabic</li>
+            <li><b>Document scanning</b> with review before saving</li>
+            <li><b>The chat assistant</b> with confirmations and sources</li>
+            <li><b>Automatic filing</b> into the six areas</li>
+            <li><b>The questions system</b> for anything unsure</li>
+            <li><b>Conflict and duplicate detection</b> with free times</li>
+            <li><b>Daily brief</b> and period summaries</li>
+            <li><b>Money analysis</b> with separate currencies</li>
+            <li><b>The workspace</b> — search, filters, bulk, trash</li>
+            <li><b>Document storage</b> and calendar feeds</li>
+            <li><b>Account, export, deletion</b>, light and dark</li>
+          </ul>
+        </section>
+
+        <section class="rise" style="--d: 320">
+          <div class="row g-3">
+            <span class="pill pill--outline">Not built yet</span>
+          </div>
+          <ul class="list list--gap list--single">
+            <li><b>Payments.</b> No checkout. Everyone is on the free level, and the app says so.</li>
+            <li><b>Household sharing.</b> No second person on an account. Real work, not a small
+              change.</li>
+            <li><b>Questions about documents.</b> Kitto reads them for jobs, but you cannot yet ask
+              what a policy says.</li>
+            <li><b>Learning from you.</b> Timings follow fixed rules. Adapting them to your own
+              behaviour needs usage data that does not exist before launch.</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="honest rise" style="--d: 460">
+        <p class="t-body-lg">
+          The build is ahead of the write-up, not behind it —
+          <span class="ink-muted">which is why this presentation spends its time showing, not
+            describing.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       29 · THE BUSINESS MODEL
+       =================================================================== -->
+  <section class="slide s-model col-body">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">The business</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          Free forever without the AI. Pay for the AI.
+        </h1>
+      </header>
+
+      <div class="tiers grow">
+        <article class="card card--lg tier rise" style="--d: 220">
+          <h2 class="t-serif tier__name">Free</h2>
+          <p class="t-heading tier__price ink-muted">$0, forever</p>
+          <ul class="tier__list">
+            <li>Manual jobs and reminders</li>
+            <li>Document storage</li>
+            <li>Full data export</li>
+          </ul>
+        </article>
+
+        <article class="card card--lg tier rise" style="--d: 290">
+          <h2 class="t-serif tier__name">Trial</h2>
+          <p class="t-heading tier__price ink-muted">7 days</p>
+          <ul class="tier__list">
+            <li>Everything below</li>
+            <li>No card at the start</li>
+          </ul>
+        </article>
+
+        <article class="card card--lg tier tier--paid rise" style="--d: 360">
+          <h2 class="t-serif tier__name">Kitto Plus</h2>
+          <p class="t-heading tier__price">$8.99/month &middot; $59/year</p>
+          <ul class="tier__list">
+            <li>Scanning and extraction</li>
+            <li>Voice and chat</li>
+            <li>Daily brief and auto-filing</li>
+            <li>Unlimited documents</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="why">
+        <div class="rise" style="--d: 460">
+          <h3 class="t-heading-sm" style="margin-bottom: 0.375rem">The free tier costs us nothing</h3>
+          <p class="t-body-sm ink-muted">
+            It does not call the AI. So free users keep their data forever, which is the promise a
+            document vault depends on.
+          </p>
+        </div>
+        <div class="rise" style="--d: 520">
+          <h3 class="t-heading-sm" style="margin-bottom: 0.375rem">A capability, not a quota</h3>
+          <p class="t-body-sm ink-muted">
+            Charging per AI message never affects normal users and only punishes heavy ones. There
+            is a hidden fair-use ceiling at 5&ndash;10&times; normal use.
+          </p>
+        </div>
+        <div class="rise" style="--d: 580">
+          <h3 class="t-heading-sm" style="margin-bottom: 0.375rem">Priced by country</h3>
+          <p class="t-body-sm ink-muted">
+            The stores adjust automatically. $8.99 in the US is a few dollars in Egypt, which serves
+            both markets without hurting either.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       30 · WHAT MAKES IT HARD TO COPY
+       =================================================================== -->
+  <section class="slide s-moat col-body">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">The business</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          What makes it hard to copy.
+        </h1>
+      </header>
+
+      <div class="moats grow">
+        <div class="moat rise" style="--d: 220">
+          <span class="chip chip--sm chip--accent">&#9889;</span>
+          <div>
+            <h2 class="t-heading-sm moat__title">No extra work for the user</h2>
+            <p class="t-body-sm ink-muted">
+              The priority, the warning time, the area, the conflict check — all from the same sentence
+              or photo you were going to give anyway.
+            </p>
+          </div>
+        </div>
+
+        <div class="moat rise" style="--d: 280">
+          <span class="chip chip--sm chip--health">&#128200;</span>
+          <div>
+            <h2 class="t-heading-sm moat__title">It improves with use</h2>
+            <p class="t-body-sm ink-muted">
+              The planned learning layer learns how you personally behave. That advantage
+              grows with time and cannot be copied from zero.
+            </p>
+          </div>
+        </div>
+
+        <div class="moat rise" style="--d: 340">
+          <span class="chip chip--sm chip--car">&#129517;</span>
+          <div>
+            <h2 class="t-heading-sm moat__title">A real gap between two categories</h2>
+            <p class="t-body-sm ink-muted">
+              Smart scheduling and simple AI capture are separate products today. Joining them at
+              the reminder layer is a pivot for either side.
+            </p>
+          </div>
+        </div>
+
+        <div class="moat rise" style="--d: 400">
+          <span class="chip chip--sm chip--finance">&#128274;</span>
+          <div>
+            <h2 class="t-heading-sm moat__title">Trust is structural</h2>
+            <p class="t-body-sm ink-muted">
+              Every date shows the page it came from. Asking instead of guessing. Nothing
+              destructive without confirmation. These are architecture, not marketing.
+            </p>
+          </div>
+        </div>
+
+        <div class="moat rise" style="--d: 460">
+          <span class="chip chip--sm chip--pets">&#129321;</span>
+          <div>
+            <h2 class="t-heading-sm moat__title">General assistants are built the wrong way round</h2>
+            <p class="t-body-sm ink-muted">
+              They serve every request equally, so they cannot hold deep knowledge of one narrow
+              area, or keep a lasting picture of everything you owe. Being narrow is the advantage.
+            </p>
+          </div>
+        </div>
+
+        <div class="moat rise" style="--d: 520">
+          <span class="chip chip--sm chip--family">&#127760;</span>
+          <div>
+            <h2 class="t-heading-sm moat__title">Arabic, done properly</h2>
+            <p class="t-body-sm ink-muted">
+              In the exact area where a language barrier does the most damage.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       31 · CLOSE
+       =================================================================== -->
+  <section class="slide s-close">
+    <div class="slide__body">
+      <div>
+        <div class="mascot settle" style="--d: 100">
+          <img src="assets/ghost.png" alt="" />
+        </div>
+
+        <h1 class="t-hero rise" style="--d: 220">Order, restored.</h1>
+
+        <p class="t-display-sm creed rise" style="--d: 340">
+          Say it and I'll file it.
+        </p>
+
+        <div class="thanks rise" style="--d: 480">
+          <span class="pill pill--outline">Kitto</span>
+          <p class="t-body ink-muted">ITI Graduation Project 2026 &middot; Thank you</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button class="theme-toggle" type="button" aria-live="polite">
+    <span class="theme-toggle__dot"></span>
+    <span data-theme-label>Dark</span>
+  </button>
+
+  <script>
+    // ------------------------------------------------------------------
+    // Theme. Follows the viewer's system setting until they choose, and the
+    // choice is remembered — a presenter who set the deck to dark before
+    // walking on stage should not find it light again after a reload.
+    //
+    // The feature videos are rendered twice, so switching swaps the file as
+    // well as the palette. Without that, a dark slide frames a phone that is
+    // still glowing white and the footage reads as pasted-in stock.
+    // ------------------------------------------------------------------
+    const root = document.documentElement
+    const label = document.querySelector('[data-theme-label]')
+    const toggle = document.querySelector('.theme-toggle')
+
+    const systemDark = () => matchMedia('(prefers-color-scheme: dark)').matches
+    const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : systemDark())
+
+    function applyTheme() {
+      const dark = isDark()
+      label.textContent = dark ? 'Light' : 'Dark'
+      toggle.setAttribute('aria-label', dark ? 'Switch to light' : 'Switch to dark')
+
+      for (const video of document.querySelectorAll('video[data-src-light]')) {
+        const next = dark ? video.dataset.srcDark : video.dataset.srcLight
+        if (!next || video.getAttribute('src') === next) continue
+        const at = video.currentTime
+        const wasPlaying = !video.paused
+        video.setAttribute('src', next)
+        // Resume where the other palette left off, so a switch mid-demo does
+        // not restart the story.
+        video.addEventListener(
+          'loadedmetadata',
+          () => {
+            video.currentTime = Math.min(at, video.duration || 0)
+            if (wasPlaying) video.play().catch(() => {})
+          },
+          { once: true },
+        )
+      }
+    }
+
+    toggle.addEventListener('click', () => {
+      root.dataset.theme = isDark() ? 'light' : 'dark'
+      try {
+        localStorage.setItem('kitto-deck-theme', root.dataset.theme)
+      } catch {
+        // Private windows refuse storage; the choice just will not survive.
+      }
+      applyTheme()
+    })
+
+    try {
+      const saved = localStorage.getItem('kitto-deck-theme')
+      if (saved === 'dark' || saved === 'light') root.dataset.theme = saved
+    } catch {
+      // Fall through to the system preference.
+    }
+
+    // A viewer who never chose should follow their system if it changes.
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (!root.dataset.theme) applyTheme()
+    })
+
+    applyTheme()
+
+    // ------------------------------------------------------------------
+    // Slide furniture, added here rather than repeated in the markup.
+    // Every slide gets the same wordmark and a number derived from its
+    // position, so inserting or reordering a slide cannot leave a stale
+    // number behind.
+    // ------------------------------------------------------------------
+    const slides = [...document.querySelectorAll('.slide')]
+
+    slides.forEach((slide, i) => {
+      if (slide.querySelector('.slide__foot')) return
+      const foot = document.createElement('div')
+      foot.className = 'slide__foot'
+      foot.innerHTML =
+        '<div class="slide__wordmark"><img src="assets/ghost.png" alt="" /><span>Kitto</span></div>' +
+        '<span class="t-micro t-num">' + String(i + 1).padStart(2, '0') + '</span>'
+      slide.append(foot)
+    })
+
+    // Release each slide's entrance stagger only when it scrolls into view.
+    // Without this, every slide would finish animating during the initial
+    // paint and you would scroll onto already-settled content.
+    const seen = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in')
+            seen.unobserve(entry.target)
+          }
+        }
+      },
+      { threshold: 0.35 }
+    )
+
+    slides.forEach((slide) => seen.observe(slide))
+
+    // A feature slide's footage plays only while that slide is on screen, and
+    // restarts each time you arrive. Thirteen phone recordings decoding at once
+    // is enough to drop frames on the room's projector laptop, and a loop the
+    // presenter never sees the start of tells half a story.
+    const onScreen = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const video = entry.target.querySelector('video')
+          if (!video) continue
+          if (entry.isIntersecting) {
+            video.currentTime = 0
+            video.play().catch(() => {
+              // Autoplay can be refused before the deck has been interacted
+              // with. The poster frame stays; a click anywhere starts it.
+            })
+          } else {
+            video.pause()
+          }
+        }
+      },
+      { threshold: 0.6 }
+    )
+
+    slides.forEach((slide) => onScreen.observe(slide))
+
+    // Arrow keys and space move one slide at a time; the CSS scroll-snap
+    // does the rest.
+    addEventListener('keydown', (e) => {
+      const dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' ? 1
+        : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0
+      if (!dir) return
+      e.preventDefault()
+      const mid = innerHeight / 2
+      const current = slides.findIndex((s) => s.getBoundingClientRect().bottom > mid)
+      const next = slides[Math.min(slides.length - 1, Math.max(0, current + dir))]
+      next?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
+  </script>
+</body>
+
+</html>

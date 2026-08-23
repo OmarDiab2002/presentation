@@ -1,0 +1,10 @@
+# Remotion's dependencies and its render scratch space. `npm ci` in video/
+# restores the first; `npm run render` regenerates the second.
+node_modules/
+video/node_modules/
+video/out/
+
+# Remotion writes its bundle cache here.
+.remotion/
+
+.DS_Store

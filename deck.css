@@ -1,0 +1,1030 @@
+/* ============================================================================
+ * Kitto — Pitch Deck, per-slide layout
+ * ----------------------------------------------------------------------------
+ * theme.css owns the design system and every pattern used by more than one
+ * slide (cards, chips, the feature/video layout, bullets, columns). This file
+ * owns layout that belongs to exactly one slide.
+ *
+ * Same unit rule as theme.css: 1rem == 16 design px on a 1280x720 surface.
+ * A slide body is 70rem wide and 36.5rem tall. Everything must fit inside that
+ * — the footer does not move, so an overrun hides content rather than
+ * scrolling it.
+ * ========================================================================= */
+
+/* ============================================================================
+ * TITLE
+ * ========================================================================= */
+.s-title .slide__body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero band: wordmark left, mascot right. Deliberately asymmetric — the
+ * mascot sits off the optical centre so the name carries the slide. */
+.s-title .hero {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 3rem;
+  padding-top: 1.25rem;
+}
+
+.s-title .hero__name {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+
+/* The trailing dot: the one piece of coral in the wordmark. */
+.s-title .hero__dot {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  transform: translateY(-0.25rem);
+}
+
+.s-title .hero__creed {
+  margin-top: 1.125rem;
+  color: var(--ink-muted);
+}
+
+.s-title .hero__creed em {
+  font-style: normal;
+  color: var(--ink);
+}
+
+/* Mascot: a soft halo rather than a shadow — the app's own treatment. The
+ * gentle float is the only motion on the slide. */
+.s-title .mascot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 21rem;
+  height: 21rem;
+}
+
+.s-title .mascot::before {
+  content: "";
+  position: absolute;
+  inset: 2rem;
+  border-radius: var(--r-pill);
+  background: radial-gradient(circle, rgb(250 106 90 / 0.14) 0%, transparent 68%);
+}
+
+.s-title .mascot img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: float 7s var(--ease-out-expo) 1.1s infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.75rem);
+  }
+}
+
+/* Team roster: no avatars — six names on a hairline, read as a masthead. */
+.s-title .team-block {
+  padding-top: 1.5rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+.s-title .team__label {
+  margin-bottom: 1.125rem;
+}
+
+.s-title .team {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+}
+
+.s-title .member {
+  padding-left: 0.875rem;
+  border-left: 0.0625rem solid var(--border-strong);
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.s-title .member span {
+  display: block;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+/* ============================================================================
+ * AGENDA
+ * ========================================================================= */
+.s-agenda .agenda {
+  display: grid;
+  grid-template-columns: 21rem 1fr;
+  gap: 4rem;
+  height: 100%;
+  align-items: center;
+}
+
+.s-agenda .agenda__intro p {
+  margin-top: 1.25rem;
+}
+
+.s-agenda .agenda__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2.5rem;
+}
+
+.s-agenda .item {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  align-items: start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 0.0625rem solid var(--border-hair);
+}
+
+.s-agenda .item__num {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 500;
+  color: var(--ink-subtle);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.125rem;
+}
+
+.s-agenda .item__title {
+  font-size: 1.125rem;
+  line-height: 1.25;
+}
+
+/* ============================================================================
+ * THE PROBLEM
+ * ---------------------------------------------------------------------------
+ * Height budget is the whole story here: 36.5rem of body. Copy is short
+ * bullets and the headline break is explicit, so the slide cannot silently
+ * grow a line and slide under the footer.
+ * ========================================================================= */
+.s-problem .head {
+  margin-bottom: 1.5rem;
+}
+
+.s-problem .head__title {
+  max-width: 56rem;
+  margin-top: 1.25rem;
+}
+
+.s-problem .head__lede {
+  max-width: 52rem;
+  margin-top: 0.875rem;
+}
+
+.s-problem .reasons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.s-problem .reason__num {
+  margin-bottom: 0.75rem;
+}
+
+.s-problem .reason__title {
+  margin-bottom: 0.5rem;
+}
+
+/* Coral rule marks the card that carries the stakes — one accent per slide. */
+.s-problem .reason--stakes {
+  border-top: 0.1875rem solid var(--accent);
+  padding-top: calc(1.5rem - 0.1875rem);
+}
+
+.s-problem .verdict {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * ONE NORMAL MONTH
+ * ========================================================================= */
+.s-month .areas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.s-month .area {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.875rem;
+  align-items: start;
+}
+
+.s-month .area__name {
+  margin-bottom: 0.375rem;
+}
+
+.s-month .area__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+}
+
+.s-month .area__list li {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.s-month .note {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * WHAT PEOPLE ALREADY DO
+ * ========================================================================= */
+.s-tools .steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.s-tools .step__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.s-tools .step__stops {
+  margin-top: 0.875rem;
+  padding-top: 0.875rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * THE PHONE ASSISTANT
+ * ========================================================================= */
+.s-capture .split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  height: 100%;
+  padding-bottom: 1.5rem;
+}
+
+.s-capture .said {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--r-2xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.s-capture .arrow {
+  margin: 0.875rem 0 0.875rem 1.5rem;
+  color: var(--ink-subtle);
+  font-size: 1.125rem;
+}
+
+.s-capture .got {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--r-2xl);
+  background: var(--surface-sunken);
+}
+
+.s-capture .verdict {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 0.1875rem solid var(--accent);
+}
+
+.s-capture .verdict p + p {
+  margin-top: 1rem;
+}
+
+/* ============================================================================
+ * THE COMPARISON TABLE
+ * ========================================================================= */
+.s-compare .head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin: 1.25rem 0 2rem;
+}
+
+/* A real <table>: this is tabular data, and screen readers and PDF export
+ * both handle it better than a grid of divs. */
+.cmp {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.cmp col.c-label {
+  width: 26rem;
+}
+
+.cmp th,
+.cmp td {
+  padding: 0.5625rem 1rem;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 0.0625rem solid var(--border-hair);
+}
+
+.cmp tbody th {
+  text-align: left;
+  padding-left: 0;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cmp thead th {
+  padding-top: 0;
+  padding-bottom: 0.875rem;
+  border-bottom: 0.0625rem solid var(--border-strong);
+}
+
+.cmp thead th.c-head-label {
+  padding-left: 0;
+  text-align: left;
+}
+
+.cmp .col-name {
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cmp .col-eg {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-subtle);
+}
+
+/* Our column lifts onto a white surface — the only fill in the table. */
+.cmp .own {
+  background: var(--surface);
+}
+
+.cmp thead th.own {
+  padding-top: 0.875rem;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  box-shadow: 0 -0.125rem 0.5rem rgb(20 20 40 / 0.03);
+}
+
+.cmp tbody tr:last-child td.own {
+  border-bottom: 0;
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
+  box-shadow: 0 0.25rem 0.75rem rgb(20 20 40 / 0.04);
+}
+
+/* Words, not ticks — a tick reads as a sales chart, and one row here is a
+ * point against us. */
+.cmp .v-yes {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cmp .v-part {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+.cmp .v-no {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink-subtle);
+}
+
+.s-compare .trade {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.s-compare .trade p {
+  max-width: 58rem;
+}
+
+/* ============================================================================
+ * ONE SENTENCE, SAID TO BOTH
+ * ========================================================================= */
+.s-oneline .sentence {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 1.5rem 0 1.75rem;
+}
+
+/* The body centres its content group under a top-anchored eyebrow, so the
+ * slide does not sit high with dead space beneath it. */
+.s-oneline .slide__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.s-oneline .oneline {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Stretch, not start: two cards of different length reading as one comparison
+ * need the same bottom edge, or the shorter side looks unfinished. */
+.s-oneline .versus {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.s-oneline .side__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.s-oneline .side--ours {
+  border-top: 0.1875rem solid var(--accent);
+  padding-top: calc(2rem - 0.1875rem);
+}
+
+.s-oneline .side p + p {
+  margin-top: 0.875rem;
+}
+
+.s-oneline .does {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.s-oneline .does li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.s-oneline .does b {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.s-oneline .does .n {
+  flex: none;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: 0.0625rem;
+  border-radius: var(--r-pill);
+  background: var(--accent-soft);
+  color: var(--accent-pressed);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.s-oneline .close {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * THE FIVE DIFFERENCES
+ * ========================================================================= */
+.s-five .five {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.125rem;
+  margin-top: 1.75rem;
+}
+
+.s-five .one__num {
+  margin-bottom: 0.875rem;
+}
+
+.s-five .one__title {
+  margin-bottom: 0.625rem;
+}
+
+/* ============================================================================
+ * HOW IT FEELS
+ * ========================================================================= */
+.s-feel .feel {
+  display: grid;
+  grid-template-columns: 22rem 1fr;
+  gap: 4rem;
+  height: 100%;
+  align-items: center;
+}
+
+.s-feel .rules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.s-feel .rule-card__title {
+  margin-bottom: 0.5rem;
+}
+
+.s-feel .never {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * THE FIVE WAYS IN
+ * ========================================================================= */
+.s-ways .ways {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.125rem;
+  margin-top: 1.75rem;
+}
+
+.s-ways .way__chip {
+  margin-bottom: 1rem;
+}
+
+.s-ways .way__title {
+  margin-bottom: 0.5rem;
+}
+
+.s-ways .way--main {
+  background: var(--solid);
+}
+
+.s-ways .way--main .way__title,
+.s-ways .way--main .t-body-sm {
+  color: var(--solid-ink);
+}
+
+.s-ways .way--main .t-body-sm {
+  opacity: 0.7;
+}
+
+.s-ways .foot-note {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * FEATURE SLIDES · shared extras
+ * ---------------------------------------------------------------------------
+ * The layout itself is .feature in theme.css. These are the pieces that only
+ * appear inside a feature slide's left column.
+ * ========================================================================= */
+.s-feat .head {
+  margin-bottom: 1.5rem;
+}
+
+.s-feat .head__title {
+  margin-top: 1rem;
+  max-width: 40rem;
+}
+
+.s-feat .head__lede {
+  margin-top: 0.75rem;
+  max-width: 40rem;
+}
+
+/* A spoken line, set as the app would show it. */
+.said-line {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.said-line + .said-line {
+  margin-top: 0.625rem;
+}
+
+.s-feat .note {
+  margin-top: 1.5rem;
+  padding-top: 1.125rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * REMINDER TIMING TABLE
+ * ========================================================================= */
+.lead {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.lead th,
+.lead td {
+  padding: 0.4375rem 0.75rem;
+  border-bottom: 0.0625rem solid var(--border-hair);
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.lead thead th {
+  padding-top: 0;
+  padding-bottom: 0.625rem;
+  border-bottom: 0.0625rem solid var(--border-strong);
+  text-align: left;
+  color: var(--ink-subtle);
+}
+
+.lead tbody th {
+  text-align: left;
+  padding-left: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.lead tbody td {
+  text-align: right;
+  padding-right: 0;
+  font-weight: 800;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.lead thead th:last-child {
+  text-align: right;
+  padding-right: 0;
+}
+
+.lead tbody tr:last-child th,
+.lead tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ============================================================================
+ * ARABIC AND RTL
+ * ========================================================================= */
+.s-arabic .why {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  margin-top: 1.5rem;
+}
+
+.s-arabic .why__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.875rem;
+  align-items: start;
+}
+
+/* ============================================================================
+ * WHERE IT RUNS
+ * ========================================================================= */
+.s-runs .platforms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.s-runs .platform__chip {
+  margin-bottom: 1.125rem;
+}
+
+.s-runs .native {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+.s-runs .native__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 0.875rem;
+}
+
+/* ============================================================================
+ * HOW IT IS BUILT
+ * ========================================================================= */
+.s-stack .stack {
+  display: grid;
+  grid-template-columns: 21rem 1fr;
+  gap: 3.5rem;
+  height: 100%;
+  align-items: center;
+}
+
+.s-stack .modes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.s-stack .mode {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.s-stack .reasons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.s-stack .limit {
+  grid-column: 1 / -1;
+  border-top: 0.1875rem solid var(--warning);
+  padding-top: calc(1.5rem - 0.125rem);
+}
+
+/* ============================================================================
+ * BUILT AND NOT BUILT
+ * ========================================================================= */
+.s-status .two {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+
+.s-status .list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.s-status .list--single {
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.s-status .list li {
+  position: relative;
+  padding-left: 1.125rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.s-status .list li b {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.s-status .list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 0.3125rem;
+  height: 0.3125rem;
+  border-radius: var(--r-pill);
+  background: var(--success);
+}
+
+.s-status .list--gap li::before {
+  background: var(--ink-subtle);
+}
+
+.s-status .honest {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * BUSINESS MODEL
+ * ========================================================================= */
+.s-model .tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.s-model .tier--paid {
+  background: var(--solid);
+}
+
+.s-model .tier--paid .tier__name,
+.s-model .tier--paid .tier__price,
+.s-model .tier--paid li {
+  color: var(--solid-ink);
+}
+
+.s-model .tier--paid li {
+  opacity: 0.72;
+}
+
+.s-model .tier__name {
+  margin-bottom: 0.375rem;
+}
+
+.s-model .tier__price {
+  margin-bottom: 1rem;
+}
+
+.s-model .tier__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.s-model .tier__list li {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.s-model .why {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 0.0625rem solid var(--border-hair);
+}
+
+/* ============================================================================
+ * WHAT MAKES IT HARD TO COPY
+ * ========================================================================= */
+.s-moat .moats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.s-moat .moat {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.s-moat .moat__title {
+  margin-bottom: 0.3125rem;
+}
+
+/* ============================================================================
+ * CLOSE
+ * ========================================================================= */
+.s-close .slide__body {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.s-close .mascot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 13rem;
+  height: 13rem;
+  margin: 0 auto 1.5rem;
+}
+
+.s-close .mascot::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border-radius: var(--r-pill);
+  background: radial-gradient(circle, rgb(250 106 90 / 0.16) 0%, transparent 68%);
+}
+
+.s-close .mascot img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.s-close .creed {
+  margin-top: 1.25rem;
+  color: var(--ink-muted);
+}
+
+.s-close .thanks {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 0.0625rem solid var(--border-hair);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ============================================================================
+ * QUOTE SLIDE · the one-line turn between acts
+ * ========================================================================= */
+.s-quote .slide__body {
+  display: grid;
+  align-content: center;
+}
+
+.s-quote .big {
+  max-width: 62rem;
+}
+
+.s-quote .big em {
+  font-style: normal;
+  color: var(--accent-pressed);
+}
+
+.s-quote .after {
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 0.0625rem solid var(--border-hair);
+  max-width: 58rem;
+}
+
+/* ============================================================================
+ * REMINDER TIMING TABLE — the one slide whose left column is a full table
+ * ---------------------------------------------------------------------------
+ * Eight rows plus a head plus a note overran the 36.5rem body by 45px. The
+ * table carries the argument, so the space comes out of the chrome around it.
+ * ========================================================================= */
+.s-lead .head {
+  margin-bottom: 1.125rem;
+}
+
+.s-lead .head__title {
+  margin-top: 0.75rem;
+}
+
+.s-lead .head__lede {
+  margin-top: 0.625rem;
+}
+
+.s-lead .lead th,
+.s-lead .lead td {
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+}
+
+.s-lead .note {
+  margin-top: 1.125rem;
+  padding-top: 0.875rem;
+}
