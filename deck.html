@@ -1527,33 +1527,23 @@
               When being wrong is expensive, it asks.
             </h1>
             <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
-              Life admin autopilot (Kitto) weighs how bad it would be to get something wrong, and behaves differently for
-              each answer.
+              Life admin autopilot (Kitto) focus on user experience , works with philoshpy fire and forget , check uncertainty and save task
             </p>
           </header>
 
           <div class="bullets rise" style="--d: 280">
             <div class="bullet">
-              <span class="bullet__mark" style="background: var(--ink-subtle)"></span>
+              <span class="bullet__mark" style="background: #22c55e"></span>
               <p class="t-body">
-                <strong class="bullet__title">"Buy bread" — nothing at risk</strong>
-                <span class="ink-muted">It just saves it. No question, no notification.</span>
+                <strong class="bullet__title">High Confidence → Zero Friction</strong>
+                <span class="ink-muted">When details are clear, Kitto saves your thought instantly without interrupting your flow.</span>
               </p>
             </div>
             <div class="bullet">
               <span class="bullet__mark" style="background: var(--warning)"></span>
               <p class="t-body">
-                <strong class="bullet__title">"Call the bank" — a wrong guess costs nothing</strong>
-                <span class="ink-muted">It picks a sensible time, and tells you which time it
-                  picked.</span>
-              </p>
-            </div>
-            <div class="bullet">
-              <span class="bullet__mark"></span>
-              <p class="t-body">
-                <strong class="bullet__title">"Pay the fine" — a wrong guess is expensive</strong>
-                <span class="ink-muted">It asks the question that decides the deadline: "When is it
-                  due?" Not "when do you want a reminder?"</span>
+                <strong class="bullet__title">Smart Uncertainty → Gentle Clarification</strong>
+                <span class="ink-muted">When a deadline is ambiguous, it captures the task first, then asks only for the single detail that matters.</span>
               </p>
             </div>
           </div>
@@ -1593,8 +1583,7 @@
               It finds the conflict before you agree to it, and offers a way out.
             </h1>
             <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
-              Two kinds: a <strong>time conflict</strong>, where two things cannot both happen, and a
-              <strong>duplicate</strong>, where you already have this job.
+               <strong>A time conflict</strong>, where two things cannot both happen.
             </p>
           </header>
 
@@ -1612,15 +1601,6 @@
               <p class="t-body">
                 <strong class="bullet__title">It offers free times, not just a warning</strong>
                 <span class="ink-muted">A complaint you cannot act on is just an obstacle.</span>
-              </p>
-            </div>
-            <div class="bullet">
-              <span class="bullet__mark"></span>
-              <p class="t-body">
-                <strong class="bullet__title">The times fit the kind of job</strong>
-                <span class="ink-muted">A film gets an evening. A dentist gets working hours.
-                  Offering 9am for a cinema trip reads as an assistant that was not
-                  listening.</span>
               </p>
             </div>
           </div>
@@ -1714,60 +1694,61 @@
             </h1>
           </header>
 
-          <div class="workspace-grid rise" id="wsCardsContainer" style="--d: 260; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.125rem 1.25rem; margin-top: 2rem;">
+          <div class="workspace-grid rise" id="wsCardsContainer" style="--d: 260; display: flex; flex-direction: column; gap: 1.125rem; margin-top: 1.5rem; width: 100%;">
             
-            <!-- ITEM 1: GROUP AND FILTER -->
-            <div class="ws-card" data-ws-card="0" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span class="chip chip--sm chip--accent" style="font-size: 0.9375rem; flex-shrink: 0;">🎛️</span>
-                <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Group and filter</strong>
+            <!-- Row 1: Three cards side by side -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.125rem; width: 100%;">
+              
+              <!-- ITEM 1: GROUP AND FILTER -->
+              <div class="ws-card" data-ws-card="0" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span class="chip chip--sm chip--accent" style="font-size: 0.9375rem; flex-shrink: 0;">🎛️</span>
+                  <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Group and filter</strong>
+                </div>
+                <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">By time, area, priority, type, tags, date range.</p>
               </div>
-              <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">By time, area, priority, type, tags, date range.</p>
+
+              <!-- ITEM 2: SEARCH IN NORMAL LANGUAGE -->
+              <div class="ws-card" data-ws-card="1" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span class="chip chip--sm chip--home" style="font-size: 0.9375rem; flex-shrink: 0;">💬</span>
+                  <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Search in normal language</strong>
+                </div>
+                <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Not only exact words — search by meaning and context.</p>
+              </div>
+
+              <!-- ITEM 3: ACT ON MANY AT ONCE -->
+              <div class="ws-card" data-ws-card="2" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span class="chip chip--sm chip--finance" style="font-size: 0.9375rem; flex-shrink: 0;">⚡</span>
+                  <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Act on many at once</strong>
+                </div>
+                <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Bulk actions with instant one-tap undo capability.</p>
+              </div>
+
             </div>
 
-            <!-- ITEM 2: SEARCH IN NORMAL LANGUAGE -->
-            <div class="ws-card" data-ws-card="1" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span class="chip chip--sm chip--home" style="font-size: 0.9375rem; flex-shrink: 0;">💬</span>
-                <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Search in normal language</strong>
+            <!-- Row 2: Two cards centered underneath -->
+            <div style="display: flex; justify-content: center; gap: 1.125rem; width: 100%;">
+              
+              <!-- ITEM 4: SMALL STEPS INSIDE A JOB -->
+              <div class="ws-card" data-ws-card="3" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem; width: 32%;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span class="chip chip--sm chip--health" style="font-size: 0.9375rem; flex-shrink: 0;">☑️</span>
+                  <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Small steps inside a job</strong>
+                </div>
+                <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Each one tickable on its own.</p>
               </div>
-              <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Not only exact words — search by meaning and context.</p>
-            </div>
 
-            <!-- ITEM 3: ACT ON MANY AT ONCE -->
-            <div class="ws-card" data-ws-card="2" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span class="chip chip--sm chip--finance" style="font-size: 0.9375rem; flex-shrink: 0;">⚡</span>
-                <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Act on many at once</strong>
+              <!-- ITEM 5: SUMMARIES YOU CAN OPEN -->
+              <div class="ws-card" data-ws-card="4" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem; width: 32%;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span class="chip chip--sm chip--car" style="font-size: 0.9375rem; flex-shrink: 0;">📊</span>
+                  <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Summaries you can open</strong>
+                </div>
+                <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Tap "4 overdue" and the list filters to those four.</p>
               </div>
-              <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Bulk actions with instant one-tap undo capability.</p>
-            </div>
 
-            <!-- ITEM 4: SMALL STEPS INSIDE A JOB -->
-            <div class="ws-card" data-ws-card="3" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span class="chip chip--sm chip--health" style="font-size: 0.9375rem; flex-shrink: 0;">☑️</span>
-                <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Small steps inside a job</strong>
-              </div>
-              <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Each one tickable on its own.</p>
-            </div>
-
-            <!-- ITEM 5: A TRASH YOU CAN UNDO -->
-            <div class="ws-card" data-ws-card="4" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span class="chip chip--sm chip--pets" style="font-size: 0.9375rem; flex-shrink: 0;">🗑️</span>
-                <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">A trash you can undo</strong>
-              </div>
-              <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Deleted jobs come back until you empty it.</p>
-            </div>
-
-            <!-- ITEM 6: SUMMARIES YOU CAN OPEN -->
-            <div class="ws-card" data-ws-card="5" style="padding: 1rem 1.125rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span class="chip chip--sm chip--car" style="font-size: 0.9375rem; flex-shrink: 0;">📊</span>
-                <strong class="t-heading-sm" style="font-size: 0.875rem; font-weight: 800; line-height: 1.25;">Summaries you can open</strong>
-              </div>
-              <p class="t-body-sm ink-muted" style="font-size: 0.8125rem; margin: 0; line-height: 1.45;">Tap "4 overdue" and the list filters to those four.</p>
             </div>
 
           </div>
@@ -1775,7 +1756,6 @@
           <div class="ws-foot rise" style="--d: 380; margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; padding-top: 0.5rem; border-top: 0.0625rem solid var(--border-hair);">
             <span class="ink-muted t-label" id="wsStatusText" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;">WORKSPACE TOOLS · HOVER OR TAP CARDS TO EXPLORE</span>
             <div style="display: flex; gap: 0.35rem;" id="wsDots">
-              <span class="ws-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
               <span class="ws-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
               <span class="ws-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
               <span class="ws-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
@@ -1959,161 +1939,6 @@
   </section>
 
   <!-- ======================================================================
-       27 · HOW IT IS BUILT
-       =================================================================== -->
-  <section class="slide s-stack">
-    <div class="slide__body">
-      <div class="stack">
-        <div>
-          <p class="slide__eyebrow t-label rise" style="--d: 0; margin-bottom: 1.75rem">
-            How it is built
-          </p>
-          <h1 class="t-display rise" style="--d: 100">One model, three jobs.</h1>
-          <p class="t-body ink-muted rise" style="--d: 200; margin-top: 1rem">
-            Gemini 2.0 Flash. Chosen because Life admin autopilot (Kitto) sends it three different kinds of input, not
-            only text.
-          </p>
-
-          <div class="modes">
-            <div class="mode rise" style="--d: 300">
-              <span class="chip chip--sm chip--accent">&#127908;</span>
-              <div>
-                <p class="t-heading-sm">Audio</p>
-                <p class="t-body-sm ink-muted">Voice notes, sent as sound</p>
-              </div>
-            </div>
-            <div class="mode rise" style="--d: 350">
-              <span class="chip chip--sm chip--finance">&#128196;</span>
-              <div>
-                <p class="t-heading-sm">PDF</p>
-                <p class="t-body-sm ink-muted">Whole documents, pages intact</p>
-              </div>
-            </div>
-            <div class="mode rise" style="--d: 400">
-              <span class="chip chip--sm chip--home">&#128247;</span>
-              <div>
-                <p class="t-heading-sm">Images</p>
-                <p class="t-body-sm ink-muted">Camera captures</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="reasons">
-          <article class="card rise" style="--d: 320">
-            <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">Why not a text-only model</h2>
-            <p class="t-body-sm ink-muted">
-              It would need a separate speech service and a separate document service. Each adds
-              cost and a new way to fail. And ordinary document scanning throws away the layout of
-              the page — which is exactly where dates and amounts live.
-            </p>
-          </article>
-
-          <article class="card rise" style="--d: 380">
-            <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">Structured answers, not prose</h2>
-            <p class="t-body-sm ink-muted">
-              The model fills a fixed shape — title, date, area, priority, confidence — and that
-              shape is checked before anything is saved. It is never asked to write text a program
-              then has to interpret.
-            </p>
-          </article>
-
-          <article class="card rise" style="--d: 440">
-            <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">The AI cannot act alone</h2>
-            <p class="t-body-sm ink-muted">
-              It proposes actions. The app checks every one. Anything destructive stops and asks
-              you first.
-            </p>
-          </article>
-
-          <article class="card rise" style="--d: 500">
-            <h2 class="t-heading-sm" style="margin-bottom: 0.5rem">It only sees what you give it</h2>
-            <p class="t-body-sm ink-muted">
-              No inbox reading, no cloud browsing. Wherever there was a choice between wide access
-              and narrow access, we took narrow.
-            </p>
-          </article>
-
-          <article class="card card--sunken limit rise" style="--d: 560">
-            <div class="row g-4" style="align-items: flex-start">
-              <span class="pill pill--warning">The honest limit</span>
-              <p class="t-body-sm ink-muted">
-                The best document reading available today is about <strong class="ink">90&ndash;94%
-                  accurate</strong> on clean documents. We do not claim 99%. Instead every date
-                and amount shows the page it came from, and anything unclear becomes a question
-                rather than a reminder.
-                A named limit with a real answer is stronger than a claim of perfection.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================================
-       28 · BUILT, AND NOT BUILT
-       =================================================================== -->
-  <!-- ======================================================================
-       27 · SYSTEM STATUS (WHAT IS SHIPPED)
-       =================================================================== -->
-  <section class="slide s-status">
-    <div class="slide__body">
-      <header class="head">
-        <p class="slide__eyebrow t-label rise" style="--d: 0">How it is built</p>
-        <h1 class="t-display-sm head__title rise" style="--d: 100">
-          What is Shipped vs. What's Next.
-        </h1>
-      </header>
-
-      <div class="two">
-        <section class="rise" style="--d: 220">
-          <div class="row g-3">
-            <span class="pill pill--success">Working today</span>
-          </div>
-          <ul class="list">
-            <li><b>The reminder engine</b> — warning times, repeats, follow-ups that stop</li>
-            <li><b>Voice capture</b> in English and Arabic</li>
-            <li><b>Document scanning</b> with review before saving</li>
-            <li><b>The chat assistant</b> with confirmations and sources</li>
-            <li><b>Automatic filing</b> into the six areas</li>
-            <li><b>The questions system</b> for anything unsure</li>
-            <li><b>Conflict and duplicate detection</b> with free times</li>
-            <li><b>Daily brief</b> and period summaries</li>
-            <li><b>Money analysis</b> with separate currencies</li>
-            <li><b>The workspace</b> — search, filters, bulk, trash</li>
-            <li><b>Document storage</b> and calendar feeds</li>
-            <li><b>Account, export, deletion</b>, light and dark</li>
-          </ul>
-        </section>
-
-        <section class="rise" style="--d: 320">
-          <div class="row g-3">
-            <span class="pill pill--outline">Not built yet</span>
-          </div>
-          <ul class="list list--gap list--single">
-            <li><b>Payments.</b> No checkout. Everyone is on the free level, and the app says so.</li>
-            <li><b>Household sharing.</b> No second person on an account. Real work, not a small
-              change.</li>
-            <li><b>Questions about documents.</b> Life admin autopilot (Kitto) reads them for jobs, but you cannot yet ask
-              what a policy says.</li>
-            <li><b>Learning from you.</b> Timings follow fixed rules. Adapting them to your own
-              behaviour needs usage data that does not exist before launch.</li>
-          </ul>
-        </section>
-      </div>
-
-      <div class="honest rise" style="--d: 460">
-        <p class="t-body-lg">
-          The build is ahead of the write-up, not behind it —
-          <span class="ink-muted">which is why this presentation spends its time showing, not
-            describing.</span>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================================
        28 · WHAT'S NEXT (FUTURE ROADMAP)
        =================================================================== -->
   <section class="slide s-roadmap">
@@ -2124,63 +1949,60 @@
           What's Next.
         </h1>
         <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
-          Four major capabilities planned for future releases as usage data grows.
+          Three major capabilities planned for future releases as usage data grows.
         </p>
       </header>
 
-      <div class="roadmap-grid rise" id="roadmapCardsContainer" style="--d: 260; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 1.75rem;">
+      <div class="roadmap-grid rise" id="roadmapCardsContainer" style="--d: 260; display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.75rem; width: 100%;">
         
-        <!-- ROADMAP 1: PAYMENTS -->
-        <article class="card roadmap-card" data-roadmap-card="0" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
-          <div>
-            <span class="chip chip--lg chip--finance platform__chip" style="font-size: 1.25rem;">💳</span>
-          </div>
-          <div>
-            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">In-App Checkout & Plans</h2>
-            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
-              Free forever for manual life admin. Optional premium tier for AI parsing & automated document extraction.
-            </p>
-          </div>
-        </article>
+        <!-- Row 1: Two cards side by side -->
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; width: 100%;">
+          
+          <!-- ROADMAP 1: PAYMENTS -->
+          <article class="card roadmap-card" data-roadmap-card="0" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+            <div>
+              <span class="chip chip--lg chip--finance platform__chip" style="font-size: 1.25rem;">💳</span>
+            </div>
+            <div>
+              <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">In-App Checkout & Plans</h2>
+              <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+                Free forever for manual life admin. Optional premium tier for AI parsing & automated document extraction.
+              </p>
+            </div>
+          </article>
 
-        <!-- ROADMAP 2: HOUSEHOLD SHARING -->
-        <article class="card roadmap-card" data-roadmap-card="1" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
-          <div>
-            <span class="chip chip--lg chip--family platform__chip" style="font-size: 1.25rem;">👨‍👩‍👧‍👦</span>
-          </div>
-          <div>
-            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Household & Family Sharing</h2>
-            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
-              Multi-user delegation to share joint bills, car renewals, medical records & family tasks safely.
-            </p>
-          </div>
-        </article>
+          <!-- ROADMAP 2: HOUSEHOLD SHARING -->
+          <article class="card roadmap-card" data-roadmap-card="1" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+            <div>
+              <span class="chip chip--lg chip--family platform__chip" style="font-size: 1.25rem;">👨‍👩‍👧‍👦</span>
+            </div>
+            <div>
+              <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Household & Family Sharing</h2>
+              <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+                Multi-user delegation to share joint bills, car renewals, medical records & family tasks safely.
+              </p>
+            </div>
+          </article>
 
-        <!-- ROADMAP 3: DOCUMENT Q&A -->
-        <article class="card roadmap-card" data-roadmap-card="2" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
-          <div>
-            <span class="chip chip--lg chip--home platform__chip" style="font-size: 1.25rem;">🔍</span>
-          </div>
-          <div>
-            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Interactive Document Q&A</h2>
-            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
-              Ask open questions about stored PDFs — search coverage details, warranty terms, or contract fine print.
-            </p>
-          </div>
-        </article>
+        </div>
 
-        <!-- ROADMAP 4: ADAPTIVE LEARNING -->
-        <article class="card roadmap-card" data-roadmap-card="3" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
-          <div>
-            <span class="chip chip--lg chip--accent platform__chip" style="font-size: 1.25rem;">🧠</span>
-          </div>
-          <div>
-            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Personalized Behavioral AI</h2>
-            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
-              Adaptive intelligence that learns your personal habits and adjusts warning cadences based on past behavior.
-            </p>
-          </div>
-        </article>
+        <!-- Row 2: One card centered underneath -->
+        <div style="display: flex; justify-content: center; width: 100%;">
+          
+          <!-- ROADMAP 3: ADAPTIVE LEARNING -->
+          <article class="card roadmap-card" data-roadmap-card="2" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem; width: 55%;">
+            <div>
+              <span class="chip chip--lg chip--accent platform__chip" style="font-size: 1.25rem;">🧠</span>
+            </div>
+            <div>
+              <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Personalized Behavioral AI</h2>
+              <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+                Adaptive intelligence that learns your personal habits and adjusts warning cadences based on past behavior.
+              </p>
+            </div>
+          </article>
+
+        </div>
 
       </div>
 
@@ -2190,31 +2012,184 @@
           <span class="roadmap-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
           <span class="roadmap-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
           <span class="roadmap-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
-          <span class="roadmap-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ======================================================================
-       31 · CLOSE
+       29 · USER DASHBOARD & ARCHITECTURE
+       =================================================================== -->
+  <section class="slide s-user-dash">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">The product · User Interface</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          The User Dashboard.
+        </h1>
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+          Designed for clarity & speed — built on Angular Clean Architecture (Domain, App, Infra & Presentation).
+        </p>
+      </header>
+
+      <div class="userdash-grid rise" id="userDashCardsContainer" style="--d: 260; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.75rem; width: 100%;">
+        
+        <!-- CARD 1: CALENDAR LANDING -->
+        <article class="card userdash-card" data-userdash-card="0" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--accent platform__chip" style="font-size: 1.25rem;">📅</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Calendar Landing Surface</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Answers "what is coming at me" immediately upon visit. Interactive monthly/weekly timeline of all upcoming life admin jobs.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 2: MATTERS WORKSPACE -->
+        <article class="card userdash-card" data-userdash-card="1" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--home platform__chip" style="font-size: 1.25rem;">🎛️</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Matters Workspace</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Full task control center with natural language search, 6 life area filters, bulk management, and instant undo trash.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 3: FINANCIAL & HABIT INSIGHTS -->
+        <article class="card userdash-card" data-userdash-card="2" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--finance platform__chip" style="font-size: 1.25rem;">📊</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Financial & Habit Insights</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              12-week analytical window tracking currency-aware spending breakdowns, category metrics, and job resolution rates.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="userdash-foot rise" style="--d: 380; margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 0.0625rem solid var(--border-hair);">
+        <span class="ink-muted t-label" id="userDashStatusText" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;">USER DASHBOARD · HOVER OR TAP CARDS TO EXPLORE</span>
+        <div style="display: flex; gap: 0.35rem;" id="userDashDots">
+          <span class="userdash-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="userdash-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="userdash-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       30 · ADMIN CONSOLE & OPERATIONS
+       =================================================================== -->
+  <section class="slide s-admin-dash">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">How it is built · Operations</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          The Admin Console.
+        </h1>
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+          Full platform observability & control — isolated JWT security, real-time activity stream, and immutable audit logs.
+        </p>
+      </header>
+
+      <div class="admindash-grid rise" id="adminDashCardsContainer" style="--d: 260; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.75rem; width: 100%;">
+        
+        <!-- CARD 1: LIVE ACTIVITY FEED -->
+        <article class="card admindash-card" data-admindash-card="0" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--accent platform__chip" style="font-size: 1.25rem;">⚡</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Real-Time Activity Stream</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Server-Sent Events (SSE) feed delivering live user actions, AI document extractions, and system heartbeat pings.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 2: COST & TELEMETRY INSIGHTS -->
+        <article class="card admindash-card" data-admindash-card="1" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--finance platform__chip" style="font-size: 1.25rem;">📊</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">AI Cost & Usage Telemetry</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Real-time Gemini token cost rollup, top spenders analysis, cost distribution by feature, and activation funnel metrics.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 3: SECURITY & OPERATIONAL CONTROLS -->
+        <article class="card admindash-card" data-admindash-card="2" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--family platform__chip" style="font-size: 1.25rem;">🛡️</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Security & Ops Controls</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Isolated Admin Bearer authentication, feature kill-switches, safe preview broadcasts, and audited CSV data exports.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="admindash-foot rise" style="--d: 380; margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 0.0625rem solid var(--border-hair);">
+        <span class="ink-muted t-label" id="adminDashStatusText" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;">ADMIN CONSOLE · HOVER OR TAP CARDS TO EXPLORE</span>
+        <div style="display: flex; gap: 0.35rem;" id="adminDashDots">
+          <span class="admindash-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="admindash-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="admindash-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       31 · ANY QUESTIONS?
+       =================================================================== -->
+  <section class="slide s-questions">
+    <div class="slide__body">
+      <div>
+        <div class="mascot settle" style="--d: 100">
+          <span style="font-size: 4.5rem; display: block; filter: drop-shadow(0 0 16px rgba(250, 106, 90, 0.4));">❓</span>
+        </div>
+
+        <p class="slide__eyebrow t-label rise" style="--d: 150; margin-top: 1rem;">Discussion & Feedback</p>
+        <h1 class="t-hero rise" style="--d: 220">Any Questions?</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       32 · THANK YOU SLIDE
        =================================================================== -->
   <section class="slide s-close">
     <div class="slide__body">
       <div>
         <div class="mascot settle" style="--d: 100">
-          <img src="assets/ghost.png" alt="" />
+          <img src="assets/ghost.png" alt="Kitto Mascot" />
         </div>
 
-        <h1 class="t-hero rise" style="--d: 220">Order, restored.</h1>
+        <h1 class="t-hero rise" style="--d: 220">Thank You!</h1>
 
         <p class="t-display-sm creed rise" style="--d: 340">
-          Say it and I'll file it.
+          Order, restored. — Say it and I'll file it.
         </p>
 
         <div class="thanks rise" style="--d: 480">
           <span class="pill pill--outline">Life admin autopilot (Kitto)</span>
-          <p class="t-body ink-muted">ITI Graduation Project 2026 &middot; Thank you</p>
+          <p class="t-body ink-muted">ITI Graduation Project 2026 &middot; Thank you for your time</p>
         </div>
       </div>
     </div>
@@ -2468,6 +2443,42 @@
           if (currentRoadmapIdx > -1) {
             e.preventDefault()
             window.roadmapPrev()
+            return
+          }
+        }
+      }
+
+      // Check if user is currently looking at Slide 29 s-user-dash ("User Dashboard")
+      if (currentSlide && currentSlide.classList.contains('s-user-dash') && window.getUserDashState && window.userDashNext && window.userDashPrev) {
+        const { currentUserDashIdx, totalUserDash } = window.getUserDashState()
+        if (dir === 1) {
+          if (currentUserDashIdx < totalUserDash - 1) {
+            e.preventDefault()
+            window.userDashNext()
+            return
+          }
+        } else if (dir === -1) {
+          if (currentUserDashIdx > -1) {
+            e.preventDefault()
+            window.userDashPrev()
+            return
+          }
+        }
+      }
+
+      // Check if user is currently looking at Slide 30 s-admin-dash ("Admin Console")
+      if (currentSlide && currentSlide.classList.contains('s-admin-dash') && window.getAdminDashState && window.adminDashNext && window.adminDashPrev) {
+        const { currentAdminDashIdx, totalAdminDash } = window.getAdminDashState()
+        if (dir === 1) {
+          if (currentAdminDashIdx < totalAdminDash - 1) {
+            e.preventDefault()
+            window.adminDashNext()
+            return
+          }
+        } else if (dir === -1) {
+          if (currentAdminDashIdx > -1) {
+            e.preventDefault()
+            window.adminDashPrev()
             return
           }
         }
@@ -2949,8 +2960,7 @@
       const roadmapTitles = [
         "1. IN-APP CHECKOUT & PLANS 💳",
         "2. HOUSEHOLD & FAMILY SHARING 👨‍👩‍👧‍👦",
-        "3. INTERACTIVE DOCUMENT Q&A 🔍",
-        "4. PERSONALIZED BEHAVIORAL AI 🧠"
+        "3. PERSONALIZED BEHAVIORAL AI 🧠"
       ];
 
       let currentIdx = -1;
@@ -3098,8 +3108,7 @@
         "2. SEARCH IN NORMAL LANGUAGE 💬",
         "3. ACT ON MANY AT ONCE ⚡",
         "4. SMALL STEPS INSIDE A JOB ☑️",
-        "5. A TRASH YOU CAN UNDO 🗑️",
-        "6. SUMMARIES YOU CAN OPEN 📊"
+        "5. SUMMARIES YOU CAN OPEN 📊"
       ];
 
       let currentIdx = -1;
@@ -3162,6 +3171,152 @@
       setActiveCard(-1);
     }
 
+    function initUserDashCards() {
+      const container = document.getElementById('userDashCardsContainer');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.userdash-card'));
+      const statusText = document.getElementById('userDashStatusText');
+      const dots = Array.from(document.querySelectorAll('.userdash-dot'));
+
+      const userDashTitles = [
+        "1. CALENDAR LANDING SURFACE 📅",
+        "2. MATTERS WORKSPACE 🎛️",
+        "3. FINANCIAL & HABIT INSIGHTS 📊"
+      ];
+
+      let currentIdx = -1;
+
+      function setActiveCard(idx) {
+        currentIdx = idx;
+        cards.forEach((card, i) => {
+          if (i === currentIdx) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === currentIdx) {
+            dot.style.background = 'var(--accent)';
+            dot.style.transform = 'scale(1.4)';
+          } else {
+            dot.style.background = 'var(--border-strong)';
+            dot.style.transform = 'scale(1)';
+          }
+        });
+
+        if (statusText) {
+          if (currentIdx === -1) {
+            statusText.textContent = "USER DASHBOARD · HOVER OR TAP CARDS TO EXPLORE";
+          } else {
+            statusText.textContent = `FEATURE ${currentIdx + 1} OF ${cards.length} · ${userDashTitles[currentIdx]}`;
+          }
+        }
+      }
+
+      window.userDashNext = function() {
+        if (currentIdx < cards.length - 1) {
+          setActiveCard(currentIdx + 1);
+        }
+      };
+
+      window.userDashPrev = function() {
+        if (currentIdx > -1) {
+          setActiveCard(currentIdx - 1);
+        }
+      };
+
+      window.getUserDashState = function() {
+        return { currentUserDashIdx: currentIdx, totalUserDash: cards.length };
+      };
+
+      cards.forEach((card, i) => {
+        card.onclick = function(e) {
+          if (e) e.stopPropagation();
+          setActiveCard(i);
+        };
+        card.onmouseenter = function() {
+          setActiveCard(i);
+        };
+      });
+
+      setActiveCard(-1);
+    }
+
+    function initAdminDashCards() {
+      const container = document.getElementById('adminDashCardsContainer');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.admindash-card'));
+      const statusText = document.getElementById('adminDashStatusText');
+      const dots = Array.from(document.querySelectorAll('.admindash-dot'));
+
+      const adminDashTitles = [
+        "1. REAL-TIME ACTIVITY STREAM ⚡",
+        "2. AI COST & USAGE TELEMETRY 📊",
+        "3. SECURITY & OPS CONTROLS 🛡️"
+      ];
+
+      let currentIdx = -1;
+
+      function setActiveCard(idx) {
+        currentIdx = idx;
+        cards.forEach((card, i) => {
+          if (i === currentIdx) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === currentIdx) {
+            dot.style.background = 'var(--accent)';
+            dot.style.transform = 'scale(1.4)';
+          } else {
+            dot.style.background = 'var(--border-strong)';
+            dot.style.transform = 'scale(1)';
+          }
+        });
+
+        if (statusText) {
+          if (currentIdx === -1) {
+            statusText.textContent = "ADMIN CONSOLE · HOVER OR TAP CARDS TO EXPLORE";
+          } else {
+            statusText.textContent = `FEATURE ${currentIdx + 1} OF ${cards.length} · ${adminDashTitles[currentIdx]}`;
+          }
+        }
+      }
+
+      window.adminDashNext = function() {
+        if (currentIdx < cards.length - 1) {
+          setActiveCard(currentIdx + 1);
+        }
+      };
+
+      window.adminDashPrev = function() {
+        if (currentIdx > -1) {
+          setActiveCard(currentIdx - 1);
+        }
+      };
+
+      window.getAdminDashState = function() {
+        return { currentAdminDashIdx: currentIdx, totalAdminDash: cards.length };
+      };
+
+      cards.forEach((card, i) => {
+        card.onclick = function(e) {
+          if (e) e.stopPropagation();
+          setActiveCard(i);
+        };
+        card.onmouseenter = function() {
+          setActiveCard(i);
+        };
+      });
+
+      setActiveCard(-1);
+    }
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => {
         initAgentFlow();
@@ -3170,6 +3325,8 @@
         initScanCards();
         initWorkspaceCards();
         initRoadmapCards();
+        initUserDashCards();
+        initAdminDashCards();
       });
     } else {
       initAgentFlow();
@@ -3178,6 +3335,8 @@
       initScanCards();
       initWorkspaceCards();
       initRoadmapCards();
+      initUserDashCards();
+      initAdminDashCards();
     }
   </script>
 </body>
