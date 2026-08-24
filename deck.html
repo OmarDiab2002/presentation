@@ -2018,7 +2018,217 @@
   </section>
 
   <!-- ======================================================================
-       29 · USER DASHBOARD & ARCHITECTURE
+       29 · BUSINESS MODEL — FREEMIUM & QUOTAS
+       =================================================================== -->
+  <section class="slide s-biz-tier">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">Business Strategy · Subscription Tiers</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          Freemium Built on Real Usage.
+        </h1>
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+          Metering runs live in production — a 30-message daily cap builds habit before users upgrade.
+        </p>
+      </header>
+
+      <div class="biztier-grid rise" id="bizTierCardsContainer" style="--d: 260; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.75rem; width: 100%;">
+        
+        <!-- CARD 1: FREE TIER -->
+        <article class="card biztier-card" data-biztier-card="0" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="chip chip--lg chip--home platform__chip" style="font-size: 1.25rem;">🎁</span>
+            <span class="pill pill--outline" style="font-size: 0.75rem; font-weight: 800; color: var(--success); border-color: var(--success);">LIVE TODAY · 0 EGP</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Free Tier (Habit First)</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              <strong>30 AI questions/day</strong> & <strong>20 doc scans/mo</strong> (enforced in prod). Voice notes & smart reminders. Proves daily value before cap.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 2: PRO / PLUS TIER -->
+        <article class="card biztier-card" data-biztier-card="1" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="chip chip--lg chip--accent platform__chip" style="font-size: 1.25rem;">⚡</span>
+            <span class="pill pill--outline" style="font-size: 0.75rem; font-weight: 800; color: var(--accent); border-color: var(--accent);">PRO · ~99 EGP/MO</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Pro Tier Upgrade</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              <strong>300 AI questions/day</strong> & <strong>200 doc scans/mo</strong>. Unlocks longer voice notes, priority doc processing & calendar sync.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 3: FAMILY & B2B -->
+        <article class="card biztier-card" data-biztier-card="2" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="chip chip--lg chip--family platform__chip" style="font-size: 1.25rem;">👨‍👩‍👧‍👦</span>
+            <span class="pill pill--outline" style="font-size: 0.75rem; font-weight: 800;">FAMILY · ~179 EGP/MO</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Family & B2B Seats</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Shared household matters (rent, bills, errands) across 5 members with Pro limits. B2B per-seat renewal embedding for banks & telecoms.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="biztier-foot rise" style="--d: 380; margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 0.0625rem solid var(--border-hair);">
+        <span class="ink-muted t-label" id="bizTierStatusText" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;">BUSINESS MODEL · HOVER OR TAP CARDS TO EXPLORE</span>
+        <div style="display: flex; gap: 0.35rem;" id="bizTierDots">
+          <span class="biztier-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="biztier-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="biztier-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       30 · BUSINESS MODEL — UNIT ECONOMICS & MARGINS
+       =================================================================== -->
+  <section class="slide s-biz-unit">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">Business Strategy · Unit Economics</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          Measured AI Costs & Margin Controls.
+        </h1>
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+          Real telemetry from our production cluster — model choice gives us an active 6× gross margin lever.
+        </p>
+      </header>
+
+      <div class="bizunit-grid rise" id="bizUnitCardsContainer" style="--d: 260; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.75rem; width: 100%;">
+        
+        <!-- CARD 1: PER CHAT COST -->
+        <article class="card bizunit-card" data-bizunit-card="0" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--finance platform__chip" style="font-size: 1.25rem;">💰</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Per-Turn AI Cost</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              ~$0.009 on Flash-Lite vs ~$0.03 on 3.5-Flash. Typical free user costs ~$0.50–$1.50/mo. Measured live on dashboard.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 2: COST CONTROL CAP -->
+        <article class="card bizunit-card" data-bizunit-card="1" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--accent platform__chip" style="font-size: 1.25rem;">🛡️</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Cost Control Cap</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              30/day cap bounds free exposure at ~$8/mo. A single $35/mo VM serves our entire current user base.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 3: MARGIN LEVER -->
+        <article class="card bizunit-card" data-bizunit-card="2" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--home platform__chip" style="font-size: 1.25rem;">📈</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">6× Gross Margin Lever</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Model choice is a pricing decision: free tier uses $0.25/M model, paid tier uses $1.50/M model — direct 6× margin control.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="bizunit-foot rise" style="--d: 380; margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 0.0625rem solid var(--border-hair);">
+        <span class="ink-muted t-label" id="bizUnitStatusText" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;">UNIT ECONOMICS · HOVER OR TAP CARDS TO EXPLORE</span>
+        <div style="display: flex; gap: 0.35rem;" id="bizUnitDots">
+          <span class="bizunit-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="bizunit-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="bizunit-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       31 · BUSINESS MODEL — RENEWALS & COMPETITIVE MOAT
+       =================================================================== -->
+  <section class="slide s-biz-moat">
+    <div class="slide__body">
+      <header class="head">
+        <p class="slide__eyebrow t-label rise" style="--d: 0">Business Strategy · Competitive Advantage</p>
+        <h1 class="t-display-sm head__title rise" style="--d: 100">
+          Uncopyable Renewal Revenue & Market Moat.
+        </h1>
+        <p class="t-body-lg ink-muted head__lede rise" style="--d: 180">
+          Kitto captures expiring deadlines weeks early — opening high-commission renewal moments without selling user data.
+        </p>
+      </header>
+
+      <div class="bizmoat-grid rise" id="bizMoatCardsContainer" style="--d: 260; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.75rem; width: 100%;">
+        
+        <!-- CARD 1: REFERRAL REVENUE -->
+        <article class="card bizmoat-card" data-bizmoat-card="0" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--accent platform__chip" style="font-size: 1.25rem;">💎</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">30-Day Renewal Referrals</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Opt-in comparison quotes 30 days before car/insurance expiry. Privacy-first: sells the moment, never user data.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 2: EGYPT & MENA MARKET -->
+        <article class="card bizmoat-card" data-bizmoat-card="1" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--family platform__chip" style="font-size: 1.25rem;">🇪🇬</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Egypt & MENA Market Gap</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              70M+ internet users in Egypt with zero Arabic-first life admin tools. Tailored for Egyptian Arabic voice & bill patterns.
+            </p>
+          </div>
+        </article>
+
+        <!-- CARD 3: WHY COMPETITORS FAIL -->
+        <article class="card bizmoat-card" data-bizmoat-card="2" style="padding: 1.25rem 1.5rem; border-radius: var(--r-xl); background: var(--surface); border: 0.0625rem solid var(--border-hair); box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.75rem;">
+          <div>
+            <span class="chip chip--lg chip--home platform__chip" style="font-size: 1.25rem;">🎯</span>
+          </div>
+          <div>
+            <h2 class="t-heading-sm" style="font-size: 1.0625rem; font-weight: 800; margin-bottom: 0.35rem;">Our Unfair Competitive Moat</h2>
+            <p class="t-body-sm ink-muted" style="line-height: 1.45; margin: 0;">
+              Google Calendar is manual; Todoist needs high effort; ChatGPT lacks background persistence. Built for people who won't manage tasks.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="bizmoat-foot rise" style="--d: 380; margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 0.0625rem solid var(--border-hair);">
+        <span class="ink-muted t-label" id="bizMoatStatusText" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;">MARKET MOATS · HOVER OR TAP CARDS TO EXPLORE</span>
+        <div style="display: flex; gap: 0.35rem;" id="bizMoatDots">
+          <span class="bizmoat-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="bizmoat-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+          <span class="bizmoat-dot" style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--border-strong); transition: all 200ms ease;"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       32 · USER DASHBOARD & ARCHITECTURE
        =================================================================== -->
   <section class="slide s-user-dash">
     <div class="slide__body">
@@ -2443,6 +2653,60 @@
           if (currentRoadmapIdx > -1) {
             e.preventDefault()
             window.roadmapPrev()
+            return
+          }
+        }
+      }
+
+      // Check if user is currently looking at Slide 29 s-biz-tier ("Business Model - Tiers")
+      if (currentSlide && currentSlide.classList.contains('s-biz-tier') && window.getBizTierState && window.bizTierNext && window.bizTierPrev) {
+        const { currentBizTierIdx, totalBizTier } = window.getBizTierState()
+        if (dir === 1) {
+          if (currentBizTierIdx < totalBizTier - 1) {
+            e.preventDefault()
+            window.bizTierNext()
+            return
+          }
+        } else if (dir === -1) {
+          if (currentBizTierIdx > -1) {
+            e.preventDefault()
+            window.bizTierPrev()
+            return
+          }
+        }
+      }
+
+      // Check if user is currently looking at Slide 30 s-biz-unit ("Business Model - Unit Economics")
+      if (currentSlide && currentSlide.classList.contains('s-biz-unit') && window.getBizUnitState && window.bizUnitNext && window.bizUnitPrev) {
+        const { currentBizUnitIdx, totalBizUnit } = window.getBizUnitState()
+        if (dir === 1) {
+          if (currentBizUnitIdx < totalBizUnit - 1) {
+            e.preventDefault()
+            window.bizUnitNext()
+            return
+          }
+        } else if (dir === -1) {
+          if (currentBizUnitIdx > -1) {
+            e.preventDefault()
+            window.bizUnitPrev()
+            return
+          }
+        }
+      }
+
+      // Check if user is currently looking at Slide 31 s-biz-moat ("Business Model - Moats")
+      if (currentSlide && currentSlide.classList.contains('s-biz-moat') && window.getBizMoatState && window.bizMoatNext && window.bizMoatPrev) {
+        const { currentBizMoatIdx, totalBizMoat } = window.getBizMoatState()
+        if (dir === 1) {
+          if (currentBizMoatIdx < totalBizMoat - 1) {
+            e.preventDefault()
+            window.bizMoatNext()
+            return
+          }
+        } else if (dir === -1) {
+          if (currentBizMoatIdx > -1) {
+            e.preventDefault()
+            window.bizMoatPrev()
             return
           }
         }
@@ -3180,6 +3444,225 @@
       setActiveCard(-1);
     }
 
+    function initBizTierCards() {
+      const container = document.getElementById('bizTierCardsContainer');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.biztier-card'));
+      const statusText = document.getElementById('bizTierStatusText');
+      const dots = Array.from(document.querySelectorAll('.biztier-dot'));
+
+      const bizTierTitles = [
+        "1. FREE TIER (0 EGP) 🎁",
+        "2. PLUS SUBSCRIPTION (~99 EGP/MO) ⚡",
+        "3. FAMILY & B2B PARTNERSHIPS (~179 EGP/MO) 👨‍👩‍👧‍👦"
+      ];
+
+      let currentIdx = -1;
+
+      function setActiveCard(idx) {
+        currentIdx = idx;
+        cards.forEach((card, i) => {
+          if (i === currentIdx) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === currentIdx) {
+            dot.style.background = 'var(--accent)';
+            dot.style.transform = 'scale(1.4)';
+          } else {
+            dot.style.background = 'var(--border-strong)';
+            dot.style.transform = 'scale(1)';
+          }
+        });
+
+        if (statusText) {
+          if (currentIdx === -1) {
+            statusText.textContent = "BUSINESS MODEL · HOVER OR TAP CARDS TO EXPLORE";
+          } else {
+            statusText.textContent = `TIER ${currentIdx + 1} OF ${cards.length} · ${bizTierTitles[currentIdx]}`;
+          }
+        }
+      }
+
+      window.bizTierNext = function() {
+        if (currentIdx < cards.length - 1) {
+          setActiveCard(currentIdx + 1);
+        }
+      };
+
+      window.bizTierPrev = function() {
+        if (currentIdx > -1) {
+          setActiveCard(currentIdx - 1);
+        }
+      };
+
+      window.getBizTierState = function() {
+        return { currentBizTierIdx: currentIdx, totalBizTier: cards.length };
+      };
+
+      cards.forEach((card, i) => {
+        card.onclick = function(e) {
+          if (e) e.stopPropagation();
+          setActiveCard(i);
+        };
+        card.onmouseenter = function() {
+          setActiveCard(i);
+        };
+      });
+
+      setActiveCard(-1);
+    }
+
+    function initBizUnitCards() {
+      const container = document.getElementById('bizUnitCardsContainer');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.bizunit-card'));
+      const statusText = document.getElementById('bizUnitStatusText');
+      const dots = Array.from(document.querySelectorAll('.bizunit-dot'));
+
+      const bizUnitTitles = [
+        "1. PER-TURN AI TELEMETRY 💰",
+        "2. QUOTA AS COST CONTROL 🛡️",
+        "3. 6× GROSS MARGIN LEVER 📈"
+      ];
+
+      let currentIdx = -1;
+
+      function setActiveCard(idx) {
+        currentIdx = idx;
+        cards.forEach((card, i) => {
+          if (i === currentIdx) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === currentIdx) {
+            dot.style.background = 'var(--accent)';
+            dot.style.transform = 'scale(1.4)';
+          } else {
+            dot.style.background = 'var(--border-strong)';
+            dot.style.transform = 'scale(1)';
+          }
+        });
+
+        if (statusText) {
+          if (currentIdx === -1) {
+            statusText.textContent = "UNIT ECONOMICS · HOVER OR TAP CARDS TO EXPLORE";
+          } else {
+            statusText.textContent = `METRIC ${currentIdx + 1} OF ${cards.length} · ${bizUnitTitles[currentIdx]}`;
+          }
+        }
+      }
+
+      window.bizUnitNext = function() {
+        if (currentIdx < cards.length - 1) {
+          setActiveCard(currentIdx + 1);
+        }
+      };
+
+      window.bizUnitPrev = function() {
+        if (currentIdx > -1) {
+          setActiveCard(currentIdx - 1);
+        }
+      };
+
+      window.getBizUnitState = function() {
+        return { currentBizUnitIdx: currentIdx, totalBizUnit: cards.length };
+      };
+
+      cards.forEach((card, i) => {
+        card.onclick = function(e) {
+          if (e) e.stopPropagation();
+          setActiveCard(i);
+        };
+        card.onmouseenter = function() {
+          setActiveCard(i);
+        };
+      });
+
+      setActiveCard(-1);
+    }
+
+    function initBizMoatCards() {
+      const container = document.getElementById('bizMoatCardsContainer');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.bizmoat-card'));
+      const statusText = document.getElementById('bizMoatStatusText');
+      const dots = Array.from(document.querySelectorAll('.bizmoat-dot'));
+
+      const bizMoatTitles = [
+        "1. OPT-IN RENEWAL REFERRALS 💎",
+        "2. EGYPT FIRST-MOVER FOCUS 🇪🇬",
+        "3. COMPETITIVE POSITIONING 🎯"
+      ];
+
+      let currentIdx = -1;
+
+      function setActiveCard(idx) {
+        currentIdx = idx;
+        cards.forEach((card, i) => {
+          if (i === currentIdx) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
+
+        dots.forEach((dot, i) => {
+          if (i === currentIdx) {
+            dot.style.background = 'var(--accent)';
+            dot.style.transform = 'scale(1.4)';
+          } else {
+            dot.style.background = 'var(--border-strong)';
+            dot.style.transform = 'scale(1)';
+          }
+        });
+
+        if (statusText) {
+          if (currentIdx === -1) {
+            statusText.textContent = "MARKET MOATS · HOVER OR TAP CARDS TO EXPLORE";
+          } else {
+            statusText.textContent = `MOAT ${currentIdx + 1} OF ${cards.length} · ${bizMoatTitles[currentIdx]}`;
+          }
+        }
+      }
+
+      window.bizMoatNext = function() {
+        if (currentIdx < cards.length - 1) {
+          setActiveCard(currentIdx + 1);
+        }
+      };
+
+      window.bizMoatPrev = function() {
+        if (currentIdx > -1) {
+          setActiveCard(currentIdx - 1);
+        }
+      };
+
+      window.getBizMoatState = function() {
+        return { currentBizMoatIdx: currentIdx, totalBizMoat: cards.length };
+      };
+
+      cards.forEach((card, i) => {
+        card.onclick = function(e) {
+          if (e) e.stopPropagation();
+          setActiveCard(i);
+        };
+        card.onmouseenter = function() {
+          setActiveCard(i);
+        };
+      });
+
+      setActiveCard(-1);
+    }
+
     function initUserDashCards() {
       const container = document.getElementById('userDashCardsContainer');
       if (!container) return;
@@ -3334,6 +3817,9 @@
         initScanCards();
         initWorkspaceCards();
         initRoadmapCards();
+        initBizTierCards();
+        initBizUnitCards();
+        initBizMoatCards();
         initUserDashCards();
         initAdminDashCards();
       });
@@ -3344,6 +3830,9 @@
       initScanCards();
       initWorkspaceCards();
       initRoadmapCards();
+      initBizTierCards();
+      initBizUnitCards();
+      initBizMoatCards();
       initUserDashCards();
       initAdminDashCards();
     }
