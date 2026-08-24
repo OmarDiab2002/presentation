@@ -2301,3 +2301,16 @@
   margin: 0;
   line-height: 1.4;
 }
+
+/* ---- s-kitto: fill the height now the competitor strip has gone ----------
+ * Losing that strip left the slide bottom-heavy with dead space. The body
+ * becomes a column, the pillars take the slack, and the verdict is pinned to
+ * the baseline where every other slide puts it. */
+.s-kitto .slide__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.s-kitto .verdict {
+  margin-top: auto;
+}
