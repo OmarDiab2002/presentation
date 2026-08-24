@@ -2672,41 +2672,50 @@
         const targetNode = seq[activeSeqIdx];
         const prevNode = activeSeqIdx > 0 ? seq[activeSeqIdx - 1] : null;
 
-        // 1. Update node active states: ALL 3 INPUTS REMAIN HIGHLIGHTED ALWAYS
+        // 1. Update node active states:
+        // At initial step (activeSeqIdx === 0), highlight all 3 input nodes (0, 1, 2) to show multimodal entry.
+        // Once moving forward (activeSeqIdx > 0), ONLY targetNode is highlighted!
         nodes.forEach((n, i) => {
-          const isInputNode = (i === 0 || i === 1 || i === 2);
-          if (i === targetNode || isInputNode) {
-            n.classList.add('active');
+          if (activeSeqIdx === 0) {
+            const isInputNode = (i === 0 || i === 1 || i === 2);
+            if (isInputNode) {
+              n.classList.add('active');
+            } else {
+              n.classList.remove('active');
+            }
           } else {
-            n.classList.remove('active');
+            if (i === targetNode) {
+              n.classList.add('active');
+            } else {
+              n.classList.remove('active');
+            }
           }
         });
 
-        // 2. Light up paths up to current sequence index: ALL 3 INPUT CONNECTIONS REMAIN ILLUMINATED ALWAYS
+        // 2. Light up paths traversed in sequence up to current step
         connections.forEach((conn, connIdx) => {
           let isLit = false;
           let isDashLit = false;
 
-          const isInputPath = (connIdx === 0 || connIdx === 1 || connIdx === 2);
-
-          // All 3 input links are always highlighted & illuminated!
-          if (isInputPath) {
-            isLit = true;
-            if (activeSeqIdx <= 1) {
+          // Only at Step 0, highlight the 3 input paths
+          if (activeSeqIdx === 0) {
+            const isInputPath = (connIdx === 0 || connIdx === 1 || connIdx === 2);
+            if (isInputPath) {
+              isLit = true;
               isDashLit = true;
             }
-          }
-
-          // Check if connection was traversed in current sequence up to activeSeqIdx
-          for (let s = 0; s < activeSeqIdx; s++) {
-            if (conn.f === seq[s] && conn.t === seq[s + 1]) {
-              isLit = true;
+          } else {
+            // For activeSeqIdx > 0, check if connection was traversed in current sequence up to activeSeqIdx
+            for (let s = 0; s < activeSeqIdx; s++) {
+              if (conn.f === seq[s] && conn.t === seq[s + 1]) {
+                isLit = true;
+              }
             }
-          }
 
-          if (prevNode !== null && conn.f === prevNode && conn.t === targetNode) {
-            isLit = true;
-            isDashLit = true;
+            if (prevNode !== null && conn.f === prevNode && conn.t === targetNode) {
+              isLit = true;
+              isDashLit = true;
+            }
           }
 
           if (isLit) {
