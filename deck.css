@@ -619,20 +619,7 @@
 
 /* Node Popups */
 .s-agent-flow .node-popup {
-  position: absolute;
-  left: 50%;
-  width: 13rem;
-  padding: 0.5rem 0.75rem;
-  background: var(--solid);
-  color: var(--solid-ink);
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-elevated), 0 0 1.25rem rgba(250, 106, 90, 0.35);
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, 0) scale(0.88);
-  transition: opacity 250ms var(--ease-out-expo), transform 250ms var(--ease-out-expo), visibility 250ms;
-  pointer-events: none;
-  z-index: 30;
+  display: none !important;
 }
 
 .s-agent-flow .node-popup.below {
