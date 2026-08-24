@@ -1283,18 +1283,24 @@
                 <span class="s15-vcard-num">2</span>
                 <h3 class="s15-vcard-title">It pulls out what matters</h3>
               </div>
-              <div class="s15-vcard-visual" style="display: flex; flex-direction: column; gap: 0.3rem; width: 100%;">
-                <div class="ext-item ext-item--coral">
-                  <span class="ext-val">📅 Oct 14</span>
-                  <span class="ext-lbl">Due Date</span>
+              <div class="s15-vcard-visual" style="display: flex; flex-direction: column; gap: 0.4rem; width: 100%;">
+                <!-- Row 1: Two containers side by side -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem; width: 100%;">
+                  <div class="ext-item ext-item--coral" style="padding: 0.35rem 0.4rem;">
+                    <span class="ext-val" style="font-size: 0.75rem;">📅 Oct 14</span>
+                    <span class="ext-lbl" style="font-size: 0.625rem;">Due Date</span>
+                  </div>
+                  <div class="ext-item ext-item--purple" style="padding: 0.35rem 0.4rem;">
+                    <span class="ext-val" style="font-size: 0.75rem;">💰 $240.00</span>
+                    <span class="ext-lbl" style="font-size: 0.625rem;">Amount</span>
+                  </div>
                 </div>
-                <div class="ext-item ext-item--purple">
-                  <span class="ext-val">💰 $240.00</span>
-                  <span class="ext-lbl">Amount</span>
-                </div>
-                <div class="ext-item ext-item--green">
-                  <span class="ext-val">🆔 #9482</span>
-                  <span class="ext-lbl">Policy No</span>
+                <!-- Row 2: One container centered underneath -->
+                <div style="display: flex; justify-content: center; width: 100%;">
+                  <div class="ext-item ext-item--green" style="padding: 0.35rem 0.5rem; width: 85%; margin: 0 auto;">
+                    <span class="ext-val" style="font-size: 0.75rem;">🆔 #9482</span>
+                    <span class="ext-lbl" style="font-size: 0.625rem;">Policy No</span>
+                  </div>
                 </div>
               </div>
             </article>
