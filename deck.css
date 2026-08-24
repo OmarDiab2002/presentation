@@ -1417,10 +1417,32 @@
 .roadmap-card:hover h2,
 .roadmap-card.active h2,
 .ws-card:hover strong,
-.ws-card.active strong,
-.s15-vcard:hover .t-heading-sm,
-.s15-vcard.active .t-heading-sm {
+.ws-card.active strong {
   color: var(--accent) !important;
+}
+
+.s15-vcard:hover .s15-vcard-title,
+.s15-vcard.active .s15-vcard-title {
+  color: #141428 !important;
+}
+
+.s15-vcard:hover .s15-vcard-num,
+.s15-vcard.active .s15-vcard-num {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border-color: var(--accent) !important;
+}
+
+.s15-vcard:hover .vis-pill,
+.s15-vcard.active .vis-pill {
+  background: #f0f0f5 !important;
+  color: #141428 !important;
+  border-color: #d1d1e0 !important;
+}
+
+.s15-vcard:hover .ext-lbl,
+.s15-vcard.active .ext-lbl {
+  color: #555566 !important;
 }
 
 .s-ways .card.way.active p,
@@ -1456,7 +1478,7 @@
 .s-ways .way__title,
 .roadmap-card h2,
 .ws-card strong,
-.s15-vcard .t-heading-sm {
+.s15-vcard .s15-vcard-title {
   transition: color 300ms ease;
 }
 
