@@ -2188,3 +2188,26 @@
 .s-kitto .verdict {
   margin-top: auto;
 }
+
+/* ---- s-agenda: one column, five rows -------------------------------------
+ * The two-column list left item 05 orphaned next to an empty cell, with its
+ * divider running under nothing and the whole block floating clear of the
+ * baseline. Five items stack comfortably in the height available, they read
+ * in their own order, and the numbers stay a straight vertical run — which is
+ * the only reason to number an agenda at all. */
+.s-agenda .agenda__list {
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-content: center;
+}
+
+/* The rule belongs BETWEEN items; a border under the last one is a line with
+ * nothing beneath it. */
+.s-agenda .item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.s-agenda .item:first-child {
+  padding-top: 0;
+}
