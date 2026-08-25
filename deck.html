@@ -640,10 +640,9 @@
         </h1>
         <!-- Interactive Scenario Selector Bar -->
         <div class="flow-scenario-bar rise" style="--d: 180" id="flowScenarioBar">
-          <button class="scenario-btn active" type="button" onclick="window.selectScenario(0)">Scenario 1: Direct Flow</button>
+          <button class="scenario-btn active" type="button" onclick="window.selectScenario(0)">Scenario 1: Direct Flow (No Conflict)</button>
           <button class="scenario-btn" type="button" onclick="window.selectScenario(1)">Scenario 2: Conflict Loop</button>
-          <button class="scenario-btn" type="button" onclick="window.selectScenario(2)">Scenario 3: Clarification</button>
-          <button class="scenario-btn" type="button" onclick="window.selectScenario(3)">Scenario 4: Clarification + Conflict</button>
+          <button class="scenario-btn" type="button" onclick="window.selectScenario(2)">Scenario 3: Clarification Flow</button>
         </div>
       </header>
 
@@ -711,7 +710,7 @@
         </div>
 
         <!-- Node 3: Planning Agent -->
-        <div class="flow-node" data-step="3" style="left: 21%; top: 50%;">
+        <div class="flow-node" data-step="3" style="left: 20%; top: 50%;">
           <div class="flow-node__icon">🤖</div>
           <div class="flow-node__step">CORE AGENT</div>
           <h3 class="flow-node__title">Planning Agent</h3>
@@ -719,63 +718,43 @@
             <span class="chip-mini">Gemini Flash</span>
             <span class="chip-mini">Orchestrator</span>
           </div>
-          <div class="node-popup below">
-            <div class="popup-desc">Main LLM agent analyzing intent, routing actions, and handling loop-backs.</div>
-            <span class="popup-tool">Tool: agent_planner_core()</span>
-            <div class="popup-io">In: Multimodal Input ➔ Out: Execution Plan</div>
-          </div>
         </div>
 
         <!-- Node 4: Create Task -->
-        <div class="flow-node" data-step="4" style="left: 40%; top: 18%;">
+        <div class="flow-node" data-step="4" style="left: 35%; top: 30%;">
           <div class="flow-node__icon">➕</div>
           <div class="flow-node__step">ACTION A</div>
           <h3 class="flow-node__title">Create Task</h3>
           <div class="flow-node__badges">
-            <span class="chip-mini">New Item</span>
+            <span class="chip-mini">New Task</span>
             <span class="chip-mini">Schema</span>
           </div>
-          <div class="node-popup below">
-            <div class="popup-desc">Generates new structured task schema with calculated lead-time window.</div>
-            <span class="popup-tool">Tool: create_task_draft()</span>
-            <div class="popup-io">In: Plan Intent ➔ Out: Draft Task</div>
-          </div>
         </div>
 
-        <!-- Node 5: Update Task -->
-        <div class="flow-node" data-step="5" style="left: 40%; top: 50%;">
-          <div class="flow-node__icon">🔄</div>
-          <div class="flow-node__step">ACTION B</div>
-          <h3 class="flow-node__title">Update Task</h3>
+        <!-- Node 5: Return Task to User -->
+        <div class="flow-node" data-step="5" style="left: 92.5%; top: 18%;">
+          <div class="flow-node__icon">✅</div>
+          <div class="flow-node__step">OUTCOME 1</div>
+          <h3 class="flow-node__title">Return Task to User</h3>
           <div class="flow-node__badges">
-            <span class="chip-mini">Modify Item</span>
-            <span class="chip-mini">Re-Plan</span>
-          </div>
-          <div class="node-popup below">
-            <div class="popup-desc">Re-evaluates and modifies task timing or priority after conflict check.</div>
-            <span class="popup-tool">Tool: update_task_draft()</span>
-            <div class="popup-io">In: Adjusted Schedule ➔ Out: Updated Task</div>
+            <span class="chip-mini chip-input">No Conflict</span>
+            <span class="chip-mini chip-input">Done</span>
           </div>
         </div>
 
-        <!-- Node 6: Clarification Questions -->
-        <div class="flow-node node-branch-card" data-step="6" style="left: 40%; top: 82%;">
+        <!-- Node 6: Hold for Clarification -->
+        <div class="flow-node node-branch-card" data-step="6" style="left: 35%; top: 70%;">
           <div class="flow-node__icon">❓</div>
-          <div class="flow-node__step">ACTION C</div>
-          <h3 class="flow-node__title">Clarification Questions</h3>
+          <div class="flow-node__step">ACTION B</div>
+          <h3 class="flow-node__title">Hold for Clarification</h3>
           <div class="flow-node__badges">
-            <span class="chip-mini chip-guard">User Prompt</span>
-            <span class="chip-mini chip-guard">Guardrail</span>
-          </div>
-          <div class="node-popup above">
-            <div class="popup-desc">Prompts user with a single targeted question when date or amount is unclear.</div>
-            <span class="popup-tool">Tool: return_questions()</span>
-            <div class="popup-io">In: Unclear Field ➔ Out: User Answers</div>
+            <span class="chip-mini chip-guard">Questions</span>
+            <span class="chip-mini chip-guard">Uncertainties</span>
           </div>
         </div>
 
         <!-- Node 7: Conflict Detection -->
-        <div class="flow-node" data-step="7" style="left: 60%; top: 50%;">
+        <div class="flow-node" data-step="7" style="left: 79%; top: 40%;">
           <div class="flow-node__icon">🔍</div>
           <div class="flow-node__step">GUARDRAIL</div>
           <h3 class="flow-node__title">Conflict Detection</h3>
@@ -783,42 +762,49 @@
             <span class="chip-mini">Schedule Check</span>
             <span class="chip-mini">Collision Guard</span>
           </div>
-          <div class="node-popup above">
-            <div class="popup-desc">Checks active diary for overlaps. Loops back to Planning Agent if conflict found!</div>
-            <span class="popup-tool">Tool: check_schedule_conflict()</span>
-            <div class="popup-io">In: Task Schema ➔ Out: Conflict / No Conflict</div>
-          </div>
         </div>
 
-        <!-- Node 8: Embed Task -->
-        <div class="flow-node" data-step="8" style="left: 77%; top: 50%;">
+        <!-- Node 8: Embedded -->
+        <div class="flow-node" data-step="8" style="left: 50%; top: 50%;">
           <div class="flow-node__icon">📐</div>
           <div class="flow-node__step">INDEXING</div>
-          <h3 class="flow-node__title">Embed Task</h3>
+          <h3 class="flow-node__title">Embedded</h3>
           <div class="flow-node__badges">
             <span class="chip-mini">Vector Store</span>
             <span class="chip-mini">RAG Index</span>
           </div>
-          <div class="node-popup above">
-            <div class="popup-desc">Converts verified task into dense vector embeddings for RAG retrieval vault.</div>
-            <span class="popup-tool">Tool: embed_task_vector()</span>
-            <div class="popup-io">In: Verified Task ➔ Out: Dense Task Vector</div>
+        </div>
+
+        <!-- Node 9: Save Task in Database -->
+        <div class="flow-node" data-step="9" style="left: 65%; top: 50%;">
+          <div class="flow-node__icon">💾</div>
+          <div class="flow-node__step">PERSISTENCE</div>
+          <h3 class="flow-node__title">Save Task in DB</h3>
+          <div class="flow-node__badges">
+            <span class="chip-mini">DB Save</span>
+            <span class="chip-mini">Persistence</span>
           </div>
         </div>
 
-        <!-- Node 9: Save in Database -->
-        <div class="flow-node" data-step="9" style="left: 93%; top: 50%;">
-          <div class="flow-node__icon">💾</div>
-          <div class="flow-node__step">PERSISTENCE</div>
-          <h3 class="flow-node__title">Save in DB</h3>
+        <!-- Node 10: Return Task, Conflict & Suggestions -->
+        <div class="flow-node node-branch-card" data-step="10" style="left: 92.5%; top: 50%;">
+          <div class="flow-node__icon">⚠️</div>
+          <div class="flow-node__step">OUTCOME 2</div>
+          <h3 class="flow-node__title">Return Task & Conflict</h3>
           <div class="flow-node__badges">
-            <span class="chip-mini">DB Save</span>
-            <span class="chip-mini">Reminders</span>
+            <span class="chip-mini chip-branch">Conflict (Yes)</span>
+            <span class="chip-mini chip-branch">Suggestions</span>
           </div>
-          <div class="node-popup above">
-            <div class="popup-desc">Saves persistent record, updates money ledger, and triggers multi-stage reminders.</div>
-            <span class="popup-tool">Tool: save_to_database()</span>
-            <div class="popup-io">In: Task Vector ➔ Out: DB Record & Push Alerts</div>
+        </div>
+
+        <!-- Node 11: Return Tasks + Questions to User -->
+        <div class="flow-node node-branch-card" data-step="11" style="left: 92.5%; top: 82%;">
+          <div class="flow-node__icon">💬</div>
+          <div class="flow-node__step">OUTCOME 3</div>
+          <h3 class="flow-node__title">Return Tasks + Questions</h3>
+          <div class="flow-node__badges">
+            <span class="chip-mini chip-branch">Saved Task</span>
+            <span class="chip-mini chip-branch">User Questions</span>
           </div>
         </div>
       </div>
@@ -2118,88 +2104,101 @@
   </section>
 
   <!-- ======================================================================
-       31B · BUSINESS MODEL — COMPETITOR ANALYSIS
+       BUSINESS MODEL — COMPETITOR ANALYSIS
        =================================================================== -->
-  <section class="slide s-biz-comp">
+  <section class="slide s-compare">
     <div class="slide__body">
+      <p class="slide__eyebrow t-label rise" style="--d: 0">Business Strategy · Competitor Analysis</p>
+
       <header class="head">
-        <p class="slide__eyebrow t-label rise" style="--d: 0">Business Strategy · Competitor Analysis</p>
-        <h1 class="t-display-sm head__title rise" style="--d: 100">
-          Everyone solves capture. Nobody solves what comes after.
+        <h1 class="t-display-sm rise" style="--d: 100">
+          Competitor Analysis
         </h1>
+        <p class="t-body-lg ink-muted rise" style="--d: 180">
+          Every one of them is good at something. None of them opens the document the date is
+          written in, and none of them holds the whole picture.
+        </p>
       </header>
 
-      <div class="comp-table rise" style="--d: 240">
-        <div class="comp-row comp-row--head">
-          <span class="comp-cell comp-cell--name">Alternative</span>
-          <span class="comp-cell">Arabic voice</span>
-          <span class="comp-cell">Zero‑effort capture</span>
-          <span class="comp-cell">Decides <em>when</em></span>
-          <span class="comp-cell">Catches clashes</span>
-          <span class="comp-cell">Reads a bill</span>
-        </div>
+      <table class="cmp rise" style="--d: 300">
+        <colgroup>
+          <col class="c-label" />
+          <col />
+          <col />
+          <col />
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="c-head-label" scope="col">
+              <span class="t-label ink-subtle">What it does</span>
+            </th>
+            <th scope="col">
+              <span class="col-name">To-do apps</span>
+              <span class="col-eg">Todoist, Apple Reminders</span>
+            </th>
+            <th scope="col">
+              <span class="col-name">Assistants</span>
+              <span class="col-eg">Siri, Gemini, ChatGPT</span>
+            </th>
+            <th class="own" scope="col">
+              <span class="col-name">Life admin autopilot (Kitto)</span>
+              <span class="col-eg">This project</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Makes a reminder from your voice</th>
+            <td class="v-part">Some</td>
+            <td class="v-yes">Yes</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Knows how early to warn you</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Reads your bills and letters</th>
+            <td class="v-no">No</td>
+            <td class="v-part">Reads only</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Finds a conflict before you save</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Shows the page a date came from</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Asks when it is not sure</th>
+            <td class="v-no">No</td>
+            <td class="v-no">No</td>
+            <td class="own v-yes">Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Free, already on your phone</th>
+            <td class="v-yes">Yes</td>
+            <td class="v-yes">Yes</td>
+            <td class="own v-no">No</td>
+          </tr>
+        </tbody>
+      </table>
 
-        <div class="comp-row">
-          <span class="comp-cell comp-cell--name">Google&nbsp;Calendar / Reminders</span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--part">±</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-        </div>
-
-        <div class="comp-row">
-          <span class="comp-cell comp-cell--name">Todoist / TickTick</span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--part">±</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-        </div>
-
-        <div class="comp-row">
-          <span class="comp-cell comp-cell--name">Siri / Google&nbsp;Assistant</span>
-          <span class="comp-cell"><i class="m m--part">±</i></span>
-          <span class="comp-cell"><i class="m m--yes">✓</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-        </div>
-
-        <div class="comp-row">
-          <span class="comp-cell comp-cell--name">ChatGPT &amp; chat assistants</span>
-          <span class="comp-cell"><i class="m m--yes">✓</i></span>
-          <span class="comp-cell"><i class="m m--yes">✓</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--no">—</i></span>
-          <span class="comp-cell"><i class="m m--part">±</i></span>
-        </div>
-
-        <div class="comp-row comp-row--us">
-          <span class="comp-cell comp-cell--name">Kitto</span>
-          <span class="comp-cell"><i class="m m--yes">✓</i></span>
-          <span class="comp-cell"><i class="m m--yes">✓</i></span>
-          <span class="comp-cell"><i class="m m--yes">✓</i></span>
-          <span class="comp-cell"><i class="m m--yes">✓</i></span>
-          <span class="comp-cell"><i class="m m--yes">✓</i></span>
-        </div>
-      </div>
-
-      <div class="comp-foot rise" style="--d: 420">
-        <div class="comp-note">
-          <span class="pill pill--outline">The real competitor</span>
-          <p class="t-body-sm ink-muted">
-            Not an app — <strong>doing nothing.</strong> Late fees, expired licences and missed
-            appointments are what we are actually priced against.
-          </p>
-        </div>
-        <div class="comp-note comp-note--us">
-          <span class="pill pill--solid">The trade</span>
-          <p class="t-body-sm">
-            We are the only one that is not free — about <strong>$3 of model calls per active
-            user per month</strong>, measured, not estimated. Columns three to five are what that buys.
-          </p>
-        </div>
+      <div class="trade rise" style="--d: 460">
+        <span class="pill pill--outline">The trade</span>
+        <p class="t-body-sm ink-muted">
+          The last row is the price we pay, and we say it out loud. Life admin autopilot (Kitto) has to be worth opening,
+          and it costs about $3 of model calls per active user each month — a measured figure, not
+          an estimate. We accept that because rows two to six are where the real work is.
+        </p>
       </div>
     </div>
   </section>
@@ -2743,15 +2742,17 @@
 
       const flowSteps = [
         "INPUT 01 · VOICE NOTE CAPTURE",
-        "INPUT 02 · DOCUMENT & PDF OCR SCAN",
+        "INPUT 02 · DOCUMENT OCR SCAN",
         "INPUT 03 · TEXT & CHAT COMMANDS",
         "CORE AGENT · PLANNING AGENT REASONING",
-        "ACTION A · CREATE TASK DRAFT",
-        "ACTION B · UPDATE TASK TIMING & DETAILS",
-        "ACTION C · CLARIFICATION QUESTIONS TO USER",
+        "ACTION · CREATE TASK",
+        "OUTCOME 1 · RETURN TASK TO USER",
+        "ACTION · HOLD FOR CLARIFICATION (CREATE QUESTIONS FOR UNCERTAINTIES)",
         "GUARDRAIL · CONFLICT DETECTION CHECK",
-        "INDEXING · EMBED TASK DENSE VECTOR",
-        "PERSISTENCE · SAVE IN DATABASE & TRIGGER REMINDERS"
+        "INDEXING · EMBEDDED (TASK VECTOR)",
+        "PERSISTENCE · SAVE TASK IN DATABASE",
+        "OUTCOME 2 · RETURN TASK, CONFLICT & SUGGESTIONS TO USER",
+        "OUTCOME 3 · RETURN TASKS + QUESTIONS TO USER"
       ];
 
       const VB_W = 1000, VB_H = 380;
@@ -2760,36 +2761,31 @@
         { f: 1, t: 3 }, // 1: Doc Scan -> Planning Agent
         { f: 2, t: 3 }, // 2: Text Chat -> Planning Agent
         { f: 3, t: 4 }, // 3: Planning Agent -> Create Task
-        { f: 3, t: 5 }, // 4: Planning Agent -> Update Task
-        { f: 3, t: 6 }, // 5: Planning Agent -> Clarification Questions
-        { f: 6, t: 3, label: "return questions", isLoop: true, type: "clarify" }, // 6: Clarification -> Planning Agent
-        { f: 4, t: 7 }, // 7: Create Task -> Conflict Detection
-        { f: 5, t: 7 }, // 8: Update Task -> Conflict Detection
-        { f: 7, t: 3, label: "Conflict", isLoop: true, type: "conflict" }, // 9: Conflict -> Planning Agent loop
-        { f: 7, t: 8, label: "No conflict" }, // 10: Conflict Detection -> Embed Task
-        { f: 8, t: 9 }  // 11: Embed Task -> Save in DB
+        { f: 3, t: 6 }, // 4: Planning Agent -> Hold for Clarification
+        { f: 4, t: 8 }, // 5: Create Task -> Embedded
+        { f: 6, t: 8 }, // 6: Hold for Clarification -> Embedded
+        { f: 8, t: 9 }, // 7: Embedded -> Save Task in Database
+        { f: 9, t: 7 }, // 8: Save Task in Database -> Conflict Detection
+        { f: 7, t: 5, label: "No conflict" }, // 9: Conflict Detection -> Return Task to User
+        { f: 7, t: 10, label: "Conflict (Yes)" }, // 10: Conflict Detection -> Return Task, Conflict & Suggestions
+        { f: 9, t: 11, label: "Tasks + Questions" } // 11: Save Task in Database -> Return Tasks + Questions
       ];
 
       const scenarios = [
         {
           name: "Scenario 1: Direct Flow",
-          desc: "SCENARIO 1 · DIRECT FLOW (NO CONFLICT DETECTED)",
-          sequence: [0, 3, 4, 7, 8, 9]
+          desc: "SCENARIO 1 · INPUTS ➔ PLANNING AGENT ➔ CREATE TASK ➔ EMBEDDED ➔ SAVE IN DB ➔ CONFLICT DETECTION (NO) ➔ RETURN TASK TO USER",
+          sequence: [0, 3, 4, 8, 9, 7, 5]
         },
         {
           name: "Scenario 2: Conflict Loop",
-          desc: "SCENARIO 2 · CONFLICT DETECTED ➔ PLANNING RE-EVALUATION ➔ UPDATE TASK ➔ RESOLVED & SAVED",
-          sequence: [0, 3, 4, 7, 3, 5, 7, 8, 9]
+          desc: "SCENARIO 2 · INPUTS ➔ PLANNING AGENT ➔ CREATE TASK ➔ EMBEDDED ➔ SAVE IN DB ➔ CONFLICT DETECTION (YES) ➔ RETURN TASK, CONFLICT & SUGGESTIONS",
+          sequence: [0, 3, 4, 8, 9, 7, 10]
         },
         {
-          name: "Scenario 3: Clarification",
-          desc: "SCENARIO 3 · AMBIGUOUS INTENT ➔ CLARIFICATION QUESTIONS ➔ CREATE TASK ➔ SAVED",
-          sequence: [0, 3, 6, 3, 4, 7, 8, 9]
-        },
-        {
-          name: "Scenario 4: Full Journey",
-          desc: "SCENARIO 4 · CLARIFICATION + CONFLICT RESOLUTION (FULL WORKFLOW)",
-          sequence: [0, 3, 6, 3, 4, 7, 3, 5, 7, 8, 9]
+          name: "Scenario 3: Clarification Flow",
+          desc: "SCENARIO 3 · INPUTS ➔ PLANNING AGENT ➔ HOLD FOR CLARIFICATION ➔ EMBEDDED ➔ SAVE IN DB ➔ RETURN TASKS + QUESTIONS TO USER",
+          sequence: [0, 3, 6, 8, 9, 11]
         }
       ];
 
